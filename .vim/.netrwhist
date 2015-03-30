@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/evan/resources/BoilerBuntu/Boilerbuntu'
+let g:netrw_dirhist_2='/home/evan/resources/pepperoni'
+let g:netrw_dirhist_3='/home/evan/code/python/venv/lib/python2.7/site-packages/scipy'
+let g:netrw_dirhist_4='/home/evan/Dropbox/IEEE ROV 2015/electronics/boards/simulation/Comparator'
+let g:netrw_dirhist_5='/home/evan/resources/evanw.org/evanw.org/global/templatetags'
+let g:netrw_dirhist_6='/home/evan/resources/evanw.org/evanw.org/projects/templates/projects'
+let g:netrw_dirhist_7='/tmp/test'
