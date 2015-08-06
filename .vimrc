@@ -7,7 +7,7 @@ syntax on
 set expandtab
 filetype plugin on
 set noro
-color skittles_berry
+color monokai
 
 execute pathogen#infect()
 let maplocalleader = '\'
