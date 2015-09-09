@@ -244,6 +244,7 @@ layers configuration."
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(magit-diff-added-highlight ((t (:background "green" :foreground "brightblack"))))
+ '(magit-diff-added ((t (:background "color-34" :foreground "white"))))
+ '(magit-diff-added-highlight ((t (:background "green" :foreground "white"))))
  '(magit-diff-removed ((t (:background "red" :foreground "white"))))
  '(magit-diff-removed-highlight ((t (:background "brightred" :foreground "white")))))
