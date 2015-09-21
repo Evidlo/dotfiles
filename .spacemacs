@@ -189,8 +189,6 @@ layers configuration."
 
     (evil-leader/set-key "o y" 'copy-to-clipboard)
     (evil-leader/set-key "o p" 'paste-from-clipboard)
-    (spacemacs||set-helm-key "by" copy-to-clipboard)
-    (spacemacs||set-helm-key "bp" paste-from-clipboard)
 
     (setq powerline-default-separator 'nil)
 )

@@ -25,9 +25,9 @@ URxvt.lineSpace:            0
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt.font:                 -*-terminus-medium-*-*-*-18-*-*-*-*-*-*-*,*-iso10646-1
+URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*,*-iso10646-1
 !URxvt.font:                 xft:Waltograph:size=20
-URxvt.boldFont:             -*-terminus-bold-*-*-*-18-*-*-*-*-*-*-*,*-iso10646-1
+URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-*,*-iso10646-1
 !URxvt.BOLDfont:                 xft:WaltographUI:size=14
 
 ! Fix font space
@@ -37,10 +37,12 @@ URxvt.boldFont:             -*-terminus-bold-*-*-*-18-*-*-*-*-*-*-*,*-iso10646-1
 URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true
 
+
 ! Perl extensions
-URxvt.perl-ext-common:      default,matcher
+Urxvt*perl-lib:    /usr/lib/urxvt/perl/
+URxvt.perl-ext-common:      default,matcher,keyboard-select,url-select
 URxvt.matcher.button:       1
-URxvt.urlLauncher:          firefox
+
 
 ! Cursor
 URxvt.cursorBlink:          true
@@ -53,3 +55,14 @@ URxvt.pointerBlank:         true
 ! Colors
 URxvt.foreground:           #ffffff
 URxvt.background:           #000000
+
+! Keyboard Select
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+
+!!! Open youtubeliks in your own youtubescript
+URxvt*matcher.pattern.3:        \\bhttp:\/\/(www.youtube|youtube).com\/watch\\?v=([\\w-]*)
+URxvt*matcher.launcher.3:    mpv $2
+
+! URL Select
+URxvt.keysym.M-u:           perl:url-select:select_next
