@@ -1,17 +1,8 @@
 !-------------------------------------------------------------------------------
-! Xft settings
+! Evidlo's URxvt settings - 2015-09-24
 !-------------------------------------------------------------------------------
 
-Xft.dpi:                    96
-Xft.antialias:              false
-Xft.rgba:                   rgb
-Xft.hinting:                true
-Xft.hintstyle:              hintslight
-
-!-------------------------------------------------------------------------------
-! Evidlo's URxvt settings
-!-------------------------------------------------------------------------------
-
+!!! Format Settings !!!
 URxvt.depth:                32
 URxvt.geometry:             90x30
 URxvt.transparent:          false
@@ -23,40 +14,42 @@ URxvt.saveLines:            10000
 URxvt.internalBorder:       1
 URxvt.lineSpace:            0
 
-! Fonts
+!!! Fonts !!!
+! Note: certain characters may not render correctly if the font is too small
+! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
-URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*,*-iso10646-1
-!URxvt.font:                 xft:Waltograph:size=20
-URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-*,*-iso10646-1
-!URxvt.BOLDfont:                 xft:WaltographUI:size=14
+URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+!URxvt.font:                xft:Waltograph:size=20
+URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+!URxvt.BOLDfont:            xft:WaltographUI:size=14
 
 ! Fix font space
-!URxvt*letterSpace: -1
+! URxvt*letterSpace: 4
 
-! Scrollbar
+!!! Scrollbar !!!
 URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true
 
 
-! Perl extensions
+!!! Perl extensions !!!
 Urxvt*perl-lib:    /usr/lib/urxvt/perl/
 URxvt.perl-ext-common:      default,matcher,keyboard-select,url-select
 URxvt.matcher.button:       1
 
 
-! Cursor
+!!! Cursor !!!
 URxvt.cursorBlink:          true
 URxvt.cursorColor:          #657b83
 URxvt.cursorUnderline:      false
 
-! Pointer
+!!! Pointer !!!
 URxvt.pointerBlank:         true
 
-! Colors
+!!! Colors !!!
 URxvt.foreground:           #ffffff
 URxvt.background:           #000000
 
-! Keyboard Select
+!!! Keyboard Select !!!
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 
