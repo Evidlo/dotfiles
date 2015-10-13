@@ -20,19 +20,18 @@
      (auto-completion :variables
                         auto-completion-enable-snippets-in-popup t)
      better-defaults
+     c-c++
+     django
      emacs-lisp
+     gtags
      (git :variables
           git-gutter-use-fringe t)
      markdown
      org
-     shell
      python
-     c-c++
-     gtags
+     shell
      syntax-checking
-     ediff
      (latex :variables latex-enable-auto-fill t)
-     gtags
      )
 
    ;; List of additional packages that will be installed wihout being
@@ -169,7 +168,7 @@ layers configuration."
             )
         (if (region-active-p)
             (progn
-                (shell-command-on-region (region-beginning) (region-end) "xsel -i -b")
+                (shell-command-on-region (region-beginning) (region-end) "xsel -i -p")
                 (message "Yanked region to clipboard!")
                 (deactivate-mark))
             (message "No region active; can't yank to clipboard!")))
@@ -183,7 +182,7 @@ layers configuration."
             (clipboard-yank)
             (message "graphics active")
             )
-        (insert (shell-command-to-string "xsel -o -b"))
+        (insert (shell-command-to-string "xsel -o -p"))
         )
         )
 
