@@ -189,6 +189,14 @@ layers configuration."
     (evil-leader/set-key "o y" 'copy-to-clipboard)
     (evil-leader/set-key "o p" 'paste-from-clipboard)
 
+    (defun open-as-root ()
+        "Opens current buffer with root privileges."
+        (interactive)
+        (set-buffer (find-file (concat "/sudo::" (buffer-file-name))))
+        )
+
+    (evil-leader/set-key "o s" 'th-find-file-sudo)
+
     (setq powerline-default-separator 'nil)
 )
     (add-hook 'doc-view-mode-hook 'auto-revert-mode)

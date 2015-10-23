@@ -30,3 +30,6 @@ alias e="emacsclient -tc"
 
 #set to vim mode
 set -o vi
+
+#set keyboard repeat rate
+xset r rate 200 30
