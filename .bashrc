@@ -1,4 +1,23 @@
 # .bash_profile
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P0000000"
+    echo -en "\e]P82B2B2B"
+    echo -en "\e]P1D75F5F"
+    echo -en "\e]P9FF0000"
+    echo -en "\e]P200CD00"
+    echo -en "\e]PA98E34D"
+    echo -en "\e]P3CDCD00"
+    echo -en "\e]PBCDCD00"
+    echo -en "\e]P40000FF"
+    echo -en "\e]PC0000FF"
+    echo -en "\e]P5BD53A5"
+    echo -en "\e]PDD633B2"
+    echo -en "\e]P65FAFAF"
+    echo -en "\e]PE44C9C9"
+    echo -en "\e]P7E5E5E5"
+    echo -en "\e]PFFFFFFF"
+    clear #for background artifacting
+fi
 
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
