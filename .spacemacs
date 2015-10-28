@@ -24,6 +24,7 @@
      django
      emacs-lisp
      gtags
+     html
      (git :variables
           git-gutter-use-fringe t)
      markdown
@@ -131,7 +132,7 @@ before layers configuration."
    ;; Transparency can be toggled through `toggle-transparency'.
    dotspacemacs-inactive-transparency 90
    ;; If non nil unicode symbols are displayed in the mode line.
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen.
@@ -252,4 +253,5 @@ layers configuration."
  '(magit-diff-added ((t (:background "color-34" :foreground "white"))))
  '(magit-diff-added-highlight ((t (:background "green" :foreground "white"))))
  '(magit-diff-removed ((t (:background "red" :foreground "white"))))
- '(magit-diff-removed-highlight ((t (:background "brightred" :foreground "white")))))
+ '(magit-diff-removed-highlight ((t (:background "brightred" :foreground "white"))))
+ '(web-mode-html-attr-value-face ((t (:foreground "#FF8C00" :slant normal)))))
