@@ -51,4 +51,7 @@ alias e="emacsclient -tc"
 set -o vi
 
 #set keyboard repeat rate
-xset r rate 200 30
+if [ -n "$DISPLAY" ]
+then
+    xset r rate 200 30
+fi
