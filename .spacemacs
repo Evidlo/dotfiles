@@ -196,7 +196,7 @@ layers configuration."
         (set-buffer (find-file (concat "/sudo::" (buffer-file-name))))
         )
 
-    (evil-leader/set-key "o s" 'th-find-file-sudo)
+    (evil-leader/set-key "o s" 'open-as-root)
 
     (setq powerline-default-separator 'nil)
 )
