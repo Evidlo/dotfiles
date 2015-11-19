@@ -199,6 +199,12 @@ layers configuration."
     (evil-leader/set-key "o s" 'open-as-root)
 
     (setq powerline-default-separator 'nil)
+
+    (defun my-web-mode-hook ()
+      "Hooks for Web mode."
+      (setq evil-shift-width 2)
+    )
+    (add-hook 'web-mode-hook  'my-web-mode-hook)
 )
     (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
