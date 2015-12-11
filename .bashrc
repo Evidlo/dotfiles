@@ -28,7 +28,15 @@ fi
 export HISTSIZE=10000
 
 #add script folder and bin subfolders to path
-PATH=$PATH:/home/evan/resources/scripts:$(find $HOME/bin/ -type d -printf "%p:")/usr/local/bin
+if [ -d $HOME/bin ]
+then
+    PATH=$PATH:$(find $HOME/bin/ -type d -printf ":%p")
+fi
+if [ -d $HOME/resources/scripts ]
+then
+    PATH=$PATH:$HOME/resources/scripts
+fi
+
 export PATH
 
 #modify ps1
