@@ -28,8 +28,15 @@ fi
 export HISTSIZE=10000
 
 #add script folder and bin subfolders to path
-PATH=$PATH:$(find $HOME/bin/ -type d -printf "%p:")/usr/local/bin
-export PATH
+if [ -d $HOME/bin ]
+then
+    PATH=$PATH:$(find $HOME/bin/ -type d -printf ":%p")
+fi
+if [ -d $HOME/resources/scripts ]
+then
+    PATH=$PATH:$HOME/resources/scripts
+fi
+
 
 #modify ps1
 PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\e[036m '
