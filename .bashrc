@@ -28,19 +28,11 @@ fi
 export HISTSIZE=10000
 
 #add script folder and bin subfolders to path
-if [ -d $HOME/bin ]
-then
-    PATH=$PATH:$(find $HOME/bin/ -type d -printf ":%p")
-fi
-if [ -d $HOME/resources/scripts ]
-then
-    PATH=$PATH:$HOME/resources/scripts
-fi
-
+PATH=$PATH:$(find $HOME/bin/ -type d -printf "%p:")/usr/local/bin
 export PATH
 
 #modify ps1
-PS1="[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\$ "
+PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\e[036m '
 
 #start emacs daemon if not already running
 export ALTERNATE_EDITOR=""
@@ -63,3 +55,5 @@ if [ -n "$DISPLAY" ]
 then
     xset r rate 200 30
 fi
+
+source /usr/share/autojump/autojump.sh
