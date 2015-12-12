@@ -33,6 +33,8 @@ export PATH
 
 #modify ps1
 PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\e[036m '
+#reset terminal color to white after input
+trap 'printf "\e[0m" "$_"' DEBUG
 
 #start emacs daemon if not already running
 export ALTERNATE_EDITOR=""
