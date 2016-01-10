@@ -39,7 +39,7 @@ fi
 
 
 #modify ps1
-PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\e[036m '
+PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[036m\] '
 #reset terminal color to white after input
 trap 'printf "\e[0m" "$_"' DEBUG
 
@@ -55,6 +55,7 @@ sex(){ ("$@" <>/dev/null >&0 2>&0 &) ; exit ;}
 
 alias ls="ls --color=auto"
 alias e="emacsclient -tc"
+alias emacs="emacsclient -c"
 
 #set to vim mode
 set -o vi
@@ -64,5 +65,6 @@ if [ -n "$DISPLAY" ]
 then
     xset r rate 200 30
 fi
+
 
 source /usr/share/autojump/autojump.sh
