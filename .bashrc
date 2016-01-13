@@ -66,5 +66,3 @@ then
     xset r rate 200 30
 fi
 
-
-source /usr/share/autojump/autojump.sh
