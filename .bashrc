@@ -1,4 +1,10 @@
-# .bash_profile
+# Evidlo bashrc
+# 2016-01-13
+
+#exit if scp
+[ -z "$PS1" ] && return
+
+#colors for ttys
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0000000"
     echo -en "\e]P82B2B2B"
@@ -19,10 +25,10 @@ if [ "$TERM" = "linux" ]; then
     clear #for background artifacting
 fi
 
+#source default bashrc
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
-
 
 #increase bash history
 export HISTSIZE=10000
@@ -36,7 +42,6 @@ if [ -d $HOME/resources/scripts ]
 then
     PATH=$PATH:$HOME/resources/scripts
 fi
-
 
 #modify ps1
 PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[036m\] '
@@ -66,3 +71,7 @@ then
     xset r rate 200 30
 fi
 
+if [[ -f /usr/share/autojump/autojump.sh ]]
+then
+    source /usr/share/autojump/autojump.sh
+fi
