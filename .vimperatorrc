@@ -1,4 +1,10 @@
+#automatically set 'ignore all keys' mode for these sites
 autocmd LocationChange .*                             js modes.passAllKeys = false
 autocmd LocationChange mail\\.google\\.com            js modes.passAllKeys = true
 autocmd LocationChange www\\.google\\.com/calendar    js modes.passAllKeys = true
-autocmd LocationChange duckduckgo\\.com               js modes.passAllKeys = true
+
+#map 'D' to play Youtube link in clipboard
+nnoremap <silent> D :execute '!mpv --force-window --no-terminal "$(xsel)"&'<Return><Esc>
+
+#map 's' to temporarily allow/disallow all scripts on this page
+noremap s :noscript toggletemp<CR>

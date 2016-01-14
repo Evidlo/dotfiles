@@ -28,11 +28,20 @@ fi
 export HISTSIZE=10000
 
 #add script folder and bin subfolders to path
-PATH=$PATH:/home/evan/resources/scripts:$(find $HOME/bin/ -type d -printf "%p:")/usr/local/bin
-export PATH
+if [ -d $HOME/bin ]
+then
+    PATH=$PATH:$(find $HOME/bin/ -type d -printf ":%p")
+fi
+if [ -d $HOME/resources/scripts ]
+then
+    PATH=$PATH:$HOME/resources/scripts
+fi
+
 
 #modify ps1
-PS1="[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\$ "
+PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[036m\] '
+#reset terminal color to white after input
+trap 'printf "\e[0m" "$_"' DEBUG
 
 #start emacs daemon if not already running
 export ALTERNATE_EDITOR=""
@@ -46,6 +55,7 @@ sex(){ ("$@" <>/dev/null >&0 2>&0 &) ; exit ;}
 
 alias ls="ls --color=auto"
 alias e="emacsclient -tc"
+alias emacs="emacsclient -c"
 
 #set to vim mode
 set -o vi
@@ -55,3 +65,4 @@ if [ -n "$DISPLAY" ]
 then
     xset r rate 200 30
 fi
+
