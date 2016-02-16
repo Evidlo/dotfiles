@@ -17,8 +17,8 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (auto-completion :variables
-                        auto-completion-enable-snippets-in-popup t)
+     ;; (auto-completion :variables
+     ;;                    auto-completion-enable-snippets-in-popup t)
      better-defaults
      c-c++
      django
@@ -33,7 +33,9 @@
      shell
      syntax-checking
      (latex :variables latex-enable-auto-fill t)
+     yaml
      )
+   
 
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -164,9 +166,9 @@ layers configuration."
         (interactive)
         (if (display-graphic-p)
             (progn
-            (message "Yanked region to x-clipboard!")
-            (call-interactively 'clipboard-kill-ring-save)
-            )
+                (shell-command-on-region (region-beginning) (region-end) "xsel -i -p")
+                (message "Yanked region to clipboard!")
+                (deactivate-mark))
         (if (region-active-p)
             (progn
                 (shell-command-on-region (region-beginning) (region-end) "xsel -i -p")
@@ -198,20 +200,32 @@ layers configuration."
 
     (evil-leader/set-key "o s" 'open-as-root)
 
+    (evil-leader/set-key "o b" 'shell)
+
     (defun insert-figure (figure)
       "Insert ipe figures into org-mode"
       (interactive "sEnter figure name: ")
-      (shell-command (format "ipe %s.ipe;iperender -png -resolution 150 %s.ipe %s.png" figure figure figure))
+      (shell-command (format "ipe %s.ipe;iperender -png -resolution 150 -transparent %s.ipe %s.png" figure figure figure))
       (insert (format "[[./%s.png]]" figure))
       (org-display-inline-images)
       )
 
+    (defun edit-figure (start end)
+      "test"
+      (interactive "r")
+      (message (buffer-substring start end)))
+
     (setq powerline-default-separator 'nil)
     (defun my-web-mode-hook ()
       "Hooks for Web mode."
-      (setq evil-shift-width 2)
-    )
+      (setq evil-shift-width 2))
     (add-hook 'web-mode-hook  'my-web-mode-hook)
+
+    (defun my-org-mode-hook()
+      "hooks for org-mode"
+      (text-scale-set 2)
+      (org-toggle-latex-fragment))
+    (add-hook 'org-mode-hook  'my-org-mode-hook)
 )
     (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
@@ -250,6 +264,11 @@ layers configuration."
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(org-format-latex-options
+   (quote
+    (:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                 ("begin" "$1" "$" "$$" "\\(" "\\["))))
+ '(org-image-actual-width (quote (300)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(ring-bell-function (quote ignore) t)
@@ -261,8 +280,13 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bold ((t (:foreground "deep sky blue"))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(magit-diff-added ((t (:background "color-34" :foreground "white"))))
+ '(magit-diff-added-highlight ((t (:background "green" :foreground "white"))))
+ '(magit-diff-removed ((t (:background "red" :foreground "white"))))
+ '(magit-diff-removed-highlight ((t (:background "brightred" :foreground "white"))))
  '(org-level-1 ((t (:inherit variable-pitch :foreground "#FD971F" :height 1.3 :family "Terminus"))))
  '(org-level-2 ((t (:inherit variable-pitch :foreground "#A6E22E" :height 1.2 :family "Terminus"))))
  '(org-level-3 ((t (:inherit variable-pitch :foreground "#66D9EF" :height 1.15 :family "Terminus"))))
@@ -271,8 +295,4 @@ layers configuration."
  '(org-level-6 ((t (:inherit variable-pitch :foreground "#A6E22E" :family "Terminus"))))
  '(org-level-7 ((t (:inherit variable-pitch :foreground "#F92672" :family "Terminus"))))
  '(org-level-8 ((t (:inherit variable-pitch :foreground "#66D9EF" :family "Terminus"))))
- '(magit-diff-added ((t (:background "color-34" :foreground "white"))))
- '(magit-diff-added-highlight ((t (:background "green" :foreground "white"))))
- '(magit-diff-removed ((t (:background "red" :foreground "white"))))
- '(magit-diff-removed-highlight ((t (:background "brightred" :foreground "white"))))
  '(web-mode-html-attr-value-face ((t (:foreground "#FF8C00" :slant normal)))))
