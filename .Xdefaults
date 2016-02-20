@@ -14,13 +14,16 @@ URxvt.saveLines:            10000
 URxvt.internalBorder:       1
 URxvt.lineSpace:            0
 
+URxvt*termName:  screen-256color
+
 !!! Fonts !!!
 ! Note: certain characters may not render correctly if the font is too small
 ! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
-URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+!URxvt.font:                 -*-terminus-*-r-*-*-*-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+URxvt.font: xft:Terminus:size=12
 !URxvt.font:                xft:Waltograph:size=20
-URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+!URxvt.boldFont:             -*-terminus-bold-r-*-*-*-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
 !URxvt.BOLDfont:            xft:WaltographUI:size=14
 
 ! Fix font space
