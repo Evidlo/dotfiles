@@ -32,7 +32,7 @@
      python
      shell
      syntax-checking
-     (latex :variables latex-enable-auto-fill t)
+     ;; (latex :variables latex-enable-auto-fill t)
      yaml
      )
    
@@ -71,6 +71,7 @@ before layers configuration."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
    dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-check-for-update nil
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -264,11 +265,13 @@ layers configuration."
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
+ '(org-bullets-bullet-list (quote ("○" "○" "○" "○")))
  '(org-format-latex-options
    (quote
     (:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
                  ("begin" "$1" "$" "$$" "\\(" "\\["))))
  '(org-image-actual-width (quote (300)))
+ '(org-latex-preview-ltxpng-directory "./ltxpng/")
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(ring-bell-function (quote ignore) t)
