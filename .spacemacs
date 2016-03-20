@@ -24,6 +24,7 @@
      django
      emacs-lisp
      gtags
+     go
      html
      (git :variables
           git-gutter-use-fringe t)
@@ -87,7 +88,7 @@ before layers configuration."
    dotspacemacs-default-font '("Terminus"
                                :size 14
                                :weight normal
-                               :width normal
+                               :width semi-expanded
                                :powerline-scale 1.3)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -168,12 +169,12 @@ layers configuration."
         (if (display-graphic-p)
             (progn
                 (shell-command-on-region (region-beginning) (region-end) "xsel -i -p")
-                (message "Yanked region to clipboard!")
+                (message "Yanked region to primary")
                 (deactivate-mark))
         (if (region-active-p)
             (progn
                 (shell-command-on-region (region-beginning) (region-end) "xsel -i -p")
-                (message "Yanked region to clipboard!")
+                (message "Yanked region to primary")
                 (deactivate-mark))
             (message "No region active; can't yank to clipboard!")))
         )
@@ -190,8 +191,8 @@ layers configuration."
         )
         )
 
-    (evil-leader/set-key "o y" 'copy-to-clipboard)
-    (evil-leader/set-key "o p" 'paste-from-clipboard)
+    (evil-leader/set-key "o y" 'copy-to-primary)
+    (evil-leader/set-key "o p" 'paste-from-primary)
 
     (defun open-as-root ()
         "Opens current buffer with root privileges."
@@ -203,12 +204,14 @@ layers configuration."
 
     (evil-leader/set-key "o b" 'shell)
 
+    (evil-leader/set-key "o t" 'org-toggle-latex-fragment)
+
     (defun insert-figure (figure)
       "Insert ipe figures into org-mode"
       (interactive "sEnter figure name: ")
       (shell-command (format "ipe %s.ipe;iperender -png -resolution 150 -transparent %s.ipe %s.png" figure figure figure))
       (insert (format "[[./%s.png]]" figure))
-      (org-display-inline-images)
+      ;; (org-display-inline-images)
       )
 
     (defun edit-figure (start end)
@@ -270,8 +273,9 @@ layers configuration."
    (quote
     (:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
                  ("begin" "$1" "$" "$$" "\\(" "\\["))))
+ '(org-html-validation-link "")
  '(org-image-actual-width (quote (300)))
- '(org-latex-preview-ltxpng-directory "./ltxpng/")
+ ;; '(org-latex-preview-ltxpng-directory "./ltxpng/")
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(ring-bell-function (quote ignore) t)
@@ -298,4 +302,5 @@ layers configuration."
  '(org-level-6 ((t (:inherit variable-pitch :foreground "#A6E22E" :family "Terminus"))))
  '(org-level-7 ((t (:inherit variable-pitch :foreground "#F92672" :family "Terminus"))))
  '(org-level-8 ((t (:inherit variable-pitch :foreground "#66D9EF" :family "Terminus"))))
+ '(underline ((t (:foreground "deep sky blue" :underline "deep sky blue"))))
  '(web-mode-html-attr-value-face ((t (:foreground "#FF8C00" :slant normal)))))
