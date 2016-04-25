@@ -1,0 +1,3 @@
+[submodule "i3config"]
+	path = i3config
+	url = http://github.com/evidlo/i3config
