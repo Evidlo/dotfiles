@@ -36,11 +36,11 @@ export HISTSIZE=10000
 #add script folder and bin subfolders to path
 if [ -d $HOME/bin ]
 then
-    PATH=$PATH:$(find $HOME/bin/ -type d -printf ":%p")
+    PATH=$(find $HOME/bin/ -type d -printf ":%p"):$PATH
 fi
 if [ -d $HOME/resources/scripts ]
 then
-    PATH=$PATH:$HOME/resources/scripts
+    PATH=$HOME/resources/scripts:$PATH
 fi
 
 #modify ps1
