@@ -25,13 +25,17 @@ if [ "$TERM" = "linux" ]; then
     clear #for background artifacting
 fi
 
+
 #source default bashrc
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
 #increase bash history
-export HISTSIZE=10000
+HISTFILESIZE=400000000
+HISTSIZE=10000
+PROMPT_COMMAND="history -a"
+shopt -s histappend
 
 #add script folder and bin subfolders to path
 if [ -d $HOME/bin ]
@@ -40,12 +44,12 @@ then
 fi
 if [ -d $HOME/resources/scripts ]
 then
-    PATH=$HOME/resources/scripts:$PATH
+    PATH=$PATH:$HOME/resources/scripts
 fi
 
 #modify ps1
 PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[036m\] '
-#reset terminal color to white after input
+#make terminal input blue
 trap 'printf "\e[0m" "$_"' DEBUG
 
 #start emacs daemon if not already running
