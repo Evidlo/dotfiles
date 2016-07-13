@@ -14,8 +14,6 @@ URxvt.saveLines:            10000
 URxvt.internalBorder:       1
 URxvt.lineSpace:            0
 
-URxvt*termName:  screen-256color
-
 !!! Fonts !!!
 ! Note: certain characters may not render correctly if the font is too small
 ! Note: the fallback font must also be scaled when changing primary font size
