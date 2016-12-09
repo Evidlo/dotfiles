@@ -4,7 +4,6 @@
 # autocomplete
 zstyle :compinstall filename '/home/evan/.zshrc'
 autoload -Uz compinit && compinit
-SHELL=zsh
 
 # -------- History --------
 # history settings

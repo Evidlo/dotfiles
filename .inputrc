@@ -1,0 +1,4 @@
+## Evan Widloski - 2016-12-09
+
+# make readline programs navigate like vi
+set editing-mode vi
