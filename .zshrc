@@ -9,7 +9,7 @@ autoload -Uz compinit && compinit
 # history settings
 HISTFILE=~/.zsh_history
 HISTSIZE=400000000
-SAVEHIST=100000
+SAVEHIST=1000000
 setopt appendhistory
 bindkey -v
 
