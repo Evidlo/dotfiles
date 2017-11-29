@@ -8,8 +8,8 @@ autoload -Uz compinit && compinit
 # -------- History --------
 # history settings
 HISTFILE=~/.zsh_history
-HISTSIZE=400000000
-SAVEHIST=1000000
+HISTSIZE=10000000
+SAVEHIST=10000000
 setopt appendhistory
 bindkey -v
 
@@ -23,14 +23,14 @@ zle_highlight+=( default:fg=cyan )
 
 # -------- PATH --------
 # add script folder and bin subfolders to path
-if [ -d $HOME/bin ]
-then
-    PATH=$(find $HOME/bin/ -type d -printf ":%p"):$PATH
-fi
-if [ -d $HOME/resources/scripts ]
-then
-    PATH=$PATH:$HOME/resources/scripts
-fi
+# if [ -d $HOME/bin ]
+# then
+#     PATH=$(find $HOME/bin/ -type d -printf ":%p"):$PATH
+# fi
+# if [ -d $HOME/resources/scripts ]
+# then
+#     PATH=$PATH:$HOME/resources/scripts
+# fi
 
 # -------- Emacs --------
 
@@ -46,3 +46,5 @@ alias emacs="emacsclient -c"
 # `Start and EXit` - function to start a command in the background
 #                    and close terminal (useful for opening pdfs)
 sex(){ ("$@" <>/dev/null >&0 2>&0 &) ; exit ;}
+
+source ~/resources/ros/install_isolated/setup.zsh
