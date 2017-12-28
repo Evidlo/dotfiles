@@ -1,2 +1,3 @@
 .password-store
 .passwords_unglobbed
+.config/qutebrowser/*
