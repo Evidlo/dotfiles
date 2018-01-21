@@ -1,0 +1,97 @@
+# Evan Widloski - 2018-01-17
+# Mutt Config
+
+#------- Login info -------
+set imap_user = "evanwidloski@gmail.com"
+set imap_pass = `ph show --field password gmail`
+set smtp_url = "smtp://evanwidloski@smtp.gmail.com:587/"
+set smtp_pass = `ph show --field password gmail`
+set from = "evanwidloski@gmail.com"
+set realname = "Evan Widloski"
+
+#------- Key bindings --------
+bind index c mail
+bind index <tab> collapse-thread
+bind index,pager J next-thread
+bind index,pager K previous-thread
+bind index L display-message
+bind browser L select-entry
+bind pager H exit
+bind pager j next-line
+bind pager k previous-line
+bind pager J next-undeleted
+bind pager K previous-undeleted
+bind index R imap-fetch-mail
+
+#------- Paths -------
+set header_cache = ~/.cache/mutt/headers
+set message_cachedir = ~/.cache/mutt/bodies
+set certificate_file = ~/.cache/mutt/certificates
+set mailcap_path = ~/.config/mutt/mailcap
+
+#------- Miscellaneous -------
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set imap_check_subscribed
+set hostname = gmail.com
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+set postponed = "+[GMail]/Drafts"
+set record = "+[GMail]/Sent Mail"
+set move = no
+set include
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
+set date_format = '%Y-%m-%d'
+set auto_tag = yes
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+# editor for composing emails
+set editor = "emacsclient -tc"
+# try to open as plaintext email, fall back to html
+hdr_order Date From To Cc
+alternative_order text/plain text/html
+auto_view text/html
+# open threads with new mail
+set uncollapse_new = yes
+# jump to unread message in thread
+set uncollapse_jump = yes
+# dont collapse threads with unread
+set collapse_unread = no
+# folder-hook . push '<collapse-all>'
+unset markers
+
+#---------- Colors ----------
+# index menu
+color index color245 color234 ".*"
+color index_subject white color234 "~R"
+color index_date color198 color234
+color index_author color112 color234 "~R"
+color index_subject brightwhite color234 "~U"
+color index_author brightcolor112 color234 "~U"
+
+# message display
+color normal white color234
+color error color160 color234
+color tilde color235 color234
+color message white color234
+color markers color160 color254
+color attachment color254 color234
+color bold brightwhite color234
+color underline brightcolor81 color234
+color quoted color185 color234
+color quoted1 color81 color234
+color quoted2 color112 color234
+color quoted3 color141 color234
+color hdrdefault color245 color234
+color header brightwhite color234 "^(Subject)"
+
+color search color61 color234
+color status color241 color235
+# header/footer menu
+color indicator color234 color136
+# thread tree arrows
+color tree color185 color234
