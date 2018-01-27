@@ -47,7 +47,7 @@ fi
 
 # -------- Prompt --------
 #modify ps1
-PS1='[\[\033[01;31m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[036m\] '
+PS1='[\[\033[01;38;5;196m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[036m\] '
 #make terminal input blue
 trap 'printf "\e[0m" "$_"' DEBUG
 
@@ -56,7 +56,7 @@ trap 'printf "\e[0m" "$_"' DEBUG
 HISTFILESIZE=10000000
 HISTSIZE=10000000
 # append to .bash_history and reread after each command
-export PROMPT_COMMAND="history -a; history -c; history -r"
+export PROMPT_COMMAND="history -a;"
 # append to .bash_history instead of overwriting
 shopt -s histappend
 # dont allow repeated lines
@@ -76,6 +76,10 @@ if [[ -d $HOME/.pyenv ]]
 then
     PATH=$PATH:$HOME/.pyenv/bin
     eval "$(pyenv init -)"
+fi
+if [[ -d $HOME/.cargo/bin ]]
+then
+    PATH=$PATH:$HOME/.cargo/bin
 fi
 
 export PATH

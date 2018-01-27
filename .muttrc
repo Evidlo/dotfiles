@@ -1,13 +1,26 @@
 # Evan Widloski - 2018-01-17
-# Mutt Config
+# Neomutt Config
 
-#------- Login info -------
+#------- IMAP config -------
 set imap_user = "evanwidloski@gmail.com"
 set imap_pass = `ph show --field password gmail`
 set smtp_url = "smtp://evanwidloski@smtp.gmail.com:587/"
 set smtp_pass = `ph show --field password gmail`
-set from = "evanwidloski@gmail.com"
+set from = "evan@evanw.org"
 set realname = "Evan Widloski"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set recall=no
+# set record = "+[Gmail]/Sent Mail"
+set imap_check_subscribed
+set hostname = gmail.com
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
 
 #------- Key bindings --------
 bind index c mail
@@ -22,6 +35,18 @@ bind pager k previous-line
 bind pager J next-undeleted
 bind pager K previous-undeleted
 bind index R imap-fetch-mail
+bind index m sidebar-toggle-visible
+bind index o modify-labels
+# vimlike page up/down
+bind index \Cu half-up
+bind pager \Cu half-up
+bind index \Cd half-down
+bind pager \Cd half-down
+# next/prev mailbox
+macro index > "<sidebar-next><sidebar-open>"
+macro index < "<sidebar-prev><sidebar-open>"
+# bind alt-l to 'raw view' for yanking links
+macro index,pager \el "<enter-command>set pipe_decode = yes<enter><pipe-message>less<enter><enter-command>set pipe_decode = no<enter>"
 
 #------- Paths -------
 set header_cache = ~/.cache/mutt/headers
@@ -30,15 +55,7 @@ set certificate_file = ~/.cache/mutt/certificates
 set mailcap_path = ~/.config/mutt/mailcap
 
 #------- Miscellaneous -------
-set folder = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set imap_check_subscribed
-set hostname = gmail.com
-set mail_check = 120
-set timeout = 300
-set imap_keepalive = 300
-set postponed = "+[GMail]/Drafts"
-set record = "+[GMail]/Sent Mail"
+# dont move read messages out of inbox
 set move = no
 set include
 set sort = 'threads'
@@ -46,9 +63,6 @@ set sort_aux = 'reverse-last-date-received'
 set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
 set date_format = '%Y-%m-%d'
 set auto_tag = yes
-ignore "Authentication-Results:"
-ignore "DomainKey-Signature:"
-ignore "DKIM-Signature:"
 # editor for composing emails
 set editor = "emacsclient -tc"
 # try to open as plaintext email, fall back to html
@@ -65,33 +79,45 @@ set collapse_unread = no
 unset markers
 
 #---------- Colors ----------
+# homebrew monokai theme
+set my_background = "color234"
+set my_gray = "color245"
+set my_magenta = "color198"
+set my_green = "color112"
+set my_brightgreen = "brightcolor112"
+set my_red = "color160"
+set my_darkgray = "color235"
+set my_tan = "color185"
+set my_blue = "color81"
+set my_lavender = "color141"
+
 # index menu
-color index color245 color234 ".*"
-color index_subject white color234 "~R"
-color index_date color198 color234
-color index_author color112 color234 "~R"
-color index_subject brightwhite color234 "~U"
-color index_author brightcolor112 color234 "~U"
+color index $my_gray $my_background ".*"
+color index_subject white $my_background "~R"
+color index_date $my_magenta $my_background
+color index_author $my_green $my_background "~R"
+color index_subject brightwhite $my_background "~U"
+color index_author $my_brightgreen $my_background "~U"
 
 # message display
-color normal white color234
-color error color160 color234
-color tilde color235 color234
-color message white color234
-color markers color160 color254
-color attachment color254 color234
-color bold brightwhite color234
-color underline brightcolor81 color234
-color quoted color185 color234
-color quoted1 color81 color234
-color quoted2 color112 color234
-color quoted3 color141 color234
-color hdrdefault color245 color234
-color header brightwhite color234 "^(Subject)"
+color normal white $my_background
+color error $my_red $my_background
+color tilde $my_darkgray $my_background
+color message white $my_background
+color markers $my_red white
+color attachment white $my_background
+color bold brightwhite $my_background
+color underline brightcolor81 $my_background
+color quoted $my_tan $my_background
+color quoted1 $my_blue $my_background
+color quoted2 $my_green $my_background
+color quoted3 $my_lavender $my_background
+color hdrdefault $my_gray $my_background
+color header brightwhite $my_background "^(Subject)"
 
-color search color61 color234
-color status color241 color235
+color search $my_lavender $my_background
+color status $my_gray $my_darkgray
 # header/footer menu
-color indicator color234 color136
+color indicator $my_background $my_tan
 # thread tree arrows
-color tree color185 color234
+color tree $my_tan $my_background

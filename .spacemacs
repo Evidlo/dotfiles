@@ -324,6 +324,7 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
     (setq winum-scope 'frame-local)
+    (setq auto-mode-alist (append '(("/tmp/mutt.*" . mail-mode)) auto-mode-alist))
     (defun copy-to-clipboard ()
         "Copies selection to x-clipboard."
         (interactive)
