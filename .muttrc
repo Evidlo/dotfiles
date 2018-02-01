@@ -30,8 +30,13 @@ bind index,pager K previous-thread
 bind index L display-message
 bind browser L select-entry
 bind pager H exit
+bind attach,browser,index,pager g noop
 bind pager j next-line
 bind pager k previous-line
+bind attach,browser,index gg first-entry
+bind attach,browser,index G last-entry
+bind pager gg top
+bind pager G bottom
 bind pager J next-undeleted
 bind pager K previous-undeleted
 bind index R imap-fetch-mail
