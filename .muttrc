@@ -29,7 +29,8 @@ bind index,pager J next-thread
 bind index,pager K previous-thread
 bind index L display-message
 bind browser L select-entry
-bind pager H exit
+# bind pager H exit
+macro pager H "<exit><sync-mailbox>"
 bind attach,browser,index,pager g noop
 bind pager j next-line
 bind pager k previous-line
@@ -71,8 +72,8 @@ set auto_tag = yes
 # editor for composing emails
 set editor = "emacsclient -tc"
 # try to open as plaintext email, fall back to html
+alternative_order text/html text/plain
 hdr_order Date From To Cc
-alternative_order text/plain text/html
 auto_view text/html
 # open threads with new mail
 set uncollapse_new = yes
@@ -82,6 +83,9 @@ set uncollapse_jump = yes
 set collapse_unread = no
 # folder-hook . push '<collapse-all>'
 unset markers
+# hide 'autoview using elinks' messages
+# set display_filter="sed -e '/^\[-- Autoview using .* --]$/d'"
+# set display_filter="cat"
 
 #---------- Colors ----------
 # homebrew monokai theme

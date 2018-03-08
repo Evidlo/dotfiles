@@ -44,6 +44,10 @@ if [[ -f /usr/share/autojump/autojump.sh ]]
 then
     source /usr/share/autojump/autojump.sh
 fi
+if [[ -f /usr/share/autojump/autojump.bash ]]
+then
+    source /usr/share/autojump/autojump.bash
+fi
 
 # -------- Prompt --------
 #modify ps1
@@ -56,7 +60,7 @@ trap 'printf "\e[0m" "$_"' DEBUG
 HISTFILESIZE=10000000
 HISTSIZE=10000000
 # append to .bash_history and reread after each command
-export PROMPT_COMMAND="history -a;"
+export PROMPT_COMMAND="$PROMPT_COMMAND;history -a;"
 # append to .bash_history instead of overwriting
 shopt -s histappend
 # dont allow repeated lines
@@ -86,6 +90,7 @@ export PATH
 
 # -------- Application Settings --------
 #start emacs daemon if not already running
+export EDITOR="emacsclient -tc"
 export ALTERNATE_EDITOR=""
 
 #go configuration
