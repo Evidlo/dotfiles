@@ -30,7 +30,7 @@ bind index,pager K previous-thread
 bind index L display-message
 bind browser L select-entry
 # bind pager H exit
-macro pager H "<exit><sync-mailbox>"
+macro pager,attach H "<exit><sync-mailbox>"
 bind attach,browser,index,pager g noop
 bind pager j next-line
 bind pager k previous-line
@@ -41,7 +41,7 @@ bind pager G bottom
 bind pager J next-undeleted
 bind pager K previous-undeleted
 bind index R imap-fetch-mail
-bind index m sidebar-toggle-visible
+bind index,pager m sidebar-toggle-visible
 bind index o modify-labels
 # vimlike page up/down
 bind index \Cu half-up
