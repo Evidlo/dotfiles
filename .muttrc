@@ -92,6 +92,7 @@ unset markers
 set my_background = "color234"
 set my_gray = "color245"
 set my_magenta = "color198"
+set my_brightmagenta = "brightcolor198"
 set my_green = "color112"
 set my_brightgreen = "brightcolor112"
 set my_red = "color160"
@@ -102,10 +103,10 @@ set my_lavender = "color141"
 
 # index menu
 color index $my_gray $my_background ".*"
-color index_subject white $my_background "~R"
 color index_date $my_magenta $my_background
-color index_author $my_green $my_background "~R"
+color index_subject white $my_background "~R"
 color index_subject brightwhite $my_background "~U"
+color index_author $my_green $my_background "~R"
 color index_author $my_brightgreen $my_background "~U"
 
 # message display
