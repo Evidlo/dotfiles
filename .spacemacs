@@ -30,8 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     auto-completion
+   '(go
+     ;; auto-completion
      vimscript
      php
      yaml
@@ -255,7 +255,7 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols nil
+   dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
@@ -315,6 +315,18 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  (with-eval-after-load 'org
+  (setq-default dotspacemacs-configuration-layers
+                '((org :variables org-enable-github-support t)))
+  (setq org-confirm-babel-evaluate nil
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t)
+
+  (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((python     . t)
+    )))
   )
 
 (defun dotspacemacs/user-config ()
@@ -342,15 +354,9 @@ you should place your code here."
         (interactive)
         (insert (shell-command-to-string "xsel -o -p"))
         )
-    (defun test-clipboard ()
-      "Pastes from x-clipboard."
-      (insert (shell-command-to-string "echo hi"))
-      )
-hi
 
     (evil-leader/set-key "o y" 'copy-to-clipboard)
     (evil-leader/set-key "o p" 'paste-from-clipboard)
-    (evil-leader/set-key "o x" 'test-clipboard)
 
     (defun send-to-termbin ()
       "Send result to termbin.com pastebin"
@@ -386,14 +392,19 @@ hi
       (setq evil-shift-width 2)
     )
     (add-hook 'web-mode-hook  'my-web-mode-hook)
-    (defun my-rst-mode-hook ()
-      "Hooks for ReST mode."
-
-      )
     (defun my-org-mode-hook ()
       (setq-local yas-buffer-local-condition
-                  '(not (org-in-src-block-p t))))
+                  '(not (org-in-src-block-p t)))
+      (setq org-export-latex-listings 'minted)
+      (add-to-list 'org-export-latex-packages-alist '("" "minted"))
+      )
     (add-hook 'org-mode-hook #'my-org-mode-hook)
+    (add-hook 'go-mode-hook
+              (lambda ()
+                (add-hook 'before-save-hook 'gofmt-before-save)
+                (setq tab-width 4)
+                (setq indent-tabs-mode 1)))
+    (go :variables go-tab-width 4)
 
     (defun octave-sync-function-file-names () (ignore))
     (require 'package)
@@ -495,18 +506,24 @@ This function is called at the very end of Spacemacs initialization."
  '(hl-fg-colors
    (quote
     ("#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3")))
- '(indent-guide-delay 0 t)
+ '(indent-guide-delay 0)
  '(indent-guide-global-mode t)
  '(indent-guide-recursive t)
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(org-babel-python-command "python3")
+ '(org-export-use-babel nil)
+ '(org-image-actual-width 400)
+ '(org-latex-listings nil)
+ '(org-src-tab-acts-natively t)
  '(package-selected-packages
    (quote
-    (company-rtags company-php ac-php-core xcscope company-lua org-mime autothemer auctex-latexmk org-category-capture ghub async let-alist dash packed helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell yasnippet-snippets ein request-deferred auto-complete websocket deferred wolfram-mode polymode vimrc-mode dactyl-mode thrift stan-mode scad-mode qml-mode matlab-mode julia-mode arduino-mode php-extras phpunit phpcbf php-auto-yasnippets drupal-mode php-mode yaml-mode powerline smartparens evil helm helm-core csv-mode diminish lua-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode less-css-mode hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-css-scss haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode disaster cython-mode cmake-mode clang-format auctex anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (org-mime autothemer auctex-latexmk org-category-capture ghub async let-alist dash packed helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell yasnippet-snippets ein request-deferred auto-complete websocket deferred wolfram-mode polymode vimrc-mode dactyl-mode thrift stan-mode scad-mode qml-mode matlab-mode julia-mode arduino-mode php-extras phpunit phpcbf php-auto-yasnippets drupal-mode php-mode yaml-mode powerline smartparens evil helm helm-core csv-mode diminish lua-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode less-css-mode hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-css-scss haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode disaster cython-mode cmake-mode clang-format auctex anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(powerline-default-separator (quote utf-8))
  '(scroll-margin 20)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
+ '(tab-stop-list (quote (4 8 12)))
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
  '(vc-annotate-background-mode nil)

@@ -1,4 +1,4 @@
-c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', '!wiki': 'http://wikipedia.org/wiki/{}'}
+c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', '!wiki': 'http://wikipedia.org/wiki/Special:Search/{}'}
 c.url.default_page = 'https://google.com/'
 c.url.start_pages = ['https://google.com']
 c.completion.use_best_match = True
