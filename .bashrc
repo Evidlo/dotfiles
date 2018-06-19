@@ -76,14 +76,23 @@ if [[ -d $HOME/resources/scripts ]]
 then
     PATH=$PATH:$HOME/resources/scripts
 fi
-if [[ -d $HOME/.pyenv ]]
+# if [[ -d $HOME/.pyenv ]]
+# then
+#     PATH=$PATH:$HOME/.pyenv/bin
+#     eval "$(pyenv init -)"
+# fi
+if [[ -d $HOME/resources/venv3 ]]
 then
-    PATH=$PATH:$HOME/.pyenv/bin
-    eval "$(pyenv init -)"
+   export VIRTUAL_ENV_DISABLE_PROMPT=1
+   source $HOME/resources/venv3/bin/activate
 fi
 if [[ -d $HOME/.cargo/bin ]]
 then
     PATH=$PATH:$HOME/.cargo/bin
+fi
+if [[ -d $HOME/resources/go/bin ]]
+then
+   PATH=$PATH:$HOME/resources/go/bin
 fi
 
 export PATH
@@ -94,11 +103,13 @@ export EDITOR="emacsclient -tc"
 export ALTERNATE_EDITOR=""
 
 #go configuration
-if [[ -f $HOME/resources/go ]]
+if [[ -d $HOME/resources/go ]]
 then
 
-    GOPATH=/home/evan/resources/go
+    GOPATH=$HOME/resources/go
+    GOBIN=$HOME/resources/go/bin
     export GOPATH
+    export GOBIN
 fi
 
 # -------- Aliases --------

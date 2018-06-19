@@ -83,6 +83,8 @@ set uncollapse_jump = yes
 set collapse_unread = no
 # folder-hook . push '<collapse-all>'
 unset markers
+# hide 'Press any key to conintue...'
+set nowait_key
 # hide 'autoview using elinks' messages
 # set display_filter="sed -e '/^\[-- Autoview using .* --]$/d'"
 # set display_filter="cat"
