@@ -1,0 +1,125 @@
+#!/bin/bash
+# shell script: periodically polls system for stats
+
+### Active interface
+interface=$(ip route|awk '/default/{print $5;exit}')
+bandwidth=NC
+netbytes_down_last=0
+netbytes_up_last=0
+time_last=0
+echo '{ "version": 1 }'
+echo '['
+echo '[]'
+
+# Run the interval commands on program start
+let 'timer30=30'
+let 'timer300=300'
+
+while :
+do
+
+    # ----- Run on a 1s interval -----
+
+    ### Network transfer speed
+    if [[ $interface ]]
+    then
+
+        time_now=$(date +%s%N)
+
+        netbytes_down_now=$(awk "/$interface/"'{print $2}' < /proc/net/dev)
+        netbytes_up_now=$(awk "/$interface/"'{print $10}' < /proc/net/dev)
+        netspeed_down=$(bc <<< "scale=0;(($netbytes_down_now-$netbytes_down_last)*1000000)/(($time_now-$time_last))")KB
+        netspeed_up=$(bc <<< "scale=0;(($netbytes_up_now-$netbytes_up_last)*1000000)/(($time_now-$time_last))")KB
+
+        time_last=$time_now
+        netbytes_down_last=$netbytes_down_now
+        netbytes_up_last=$netbytes_up_now
+    else
+        netspeed_up=0KB
+        netspeed_down=0KB
+    fi
+
+    ### Datetime
+    datetime=$(date "+%k:%M")
+
+    ### CPU temp
+    cputemp=$(acpi -t|awk '{print $4$6}')
+
+    # ----- Run on a 30s interval -----
+
+    let "timer30+=1"
+    if [ $timer30 -ge 30 ]
+    then
+        timer30=0
+
+        ### Active interace
+        interface=$(ip route|awk '/default/{print $5;exit}')
+        ### IP address
+        if [[ $interface ]]
+        then
+            ip_addr=$(ip addr show $interface|awk '/inet/{print $2;exit}')
+        fi
+
+        ### Battery stats
+        acpi_status=$(acpi)
+        if [[ $acpi_status == *"Charging"* ]]
+        then
+            battery_time=$(echo $acpi_status|cut -d ' ' -f 5)
+
+            battery_color="#FF00CC"
+        else
+            battery_time=$(echo $acpi_status|cut -d ' ' -f 5)
+            battery_charge=$(echo $acpi_status|awk '{gsub(/%,/,"");print $4}')
+
+            if (( $battery_charge >= 75 ))
+            then
+                battery_color="#B7FF00"
+            elif (( $battery_charge >= 50 ))
+            then
+                battery_color="#D1D100"
+            elif (( $battery_charge >= 25 ))
+            then
+                battery_color="#E89300"
+            else
+                battery_color="#F23400"
+            fi
+        fi
+
+        ### Xfinity trial expiration time
+        if [[ $(iwgetid -r) == 'xfinitywifi' ]]
+        then
+            xfin=$(cat /tmp/xfin)
+        else
+            unset xfin
+        fi
+    fi
+
+    # ----- Run on a 300s interval -----
+
+    let "timer300+=1"
+    if [ $timer300 -ge 300 ]
+    then
+        timer300=0
+        
+        ### How many minutes I've used the computer today
+        mins_used=$(minutes_today.py ~/logs/usage.log)
+    fi
+
+
+    # ----- Format and print data -----
+    printf ",["
+    printf "{\"name\":\"\",\"color\":\"#ffff00\",\"full_text\":\"%s\"},"   "$ip_addr"
+    printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"},"   "$xfin"
+    printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"},"   "$mins_used"
+    printf "{\"name\":\"\",\"color\":\"#4284D3\",\"full_text\":\"%s\"},"   "$netspeed_down"
+    printf "{\"name\":\"\",\"color\":\"#ff9200\",\"full_text\":\"%s\"},"   "$netspeed_up"
+    printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"},"   "$datetime"
+    printf "{\"name\":\"\",\"color\":\"%s\",\"full_text\":\"%s\"},"        "$battery_color" "$battery_time"
+    printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"}"    "$cputemp"
+
+    printf "]"
+
+    sleep 1
+
+done
+

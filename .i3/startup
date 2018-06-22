@@ -1,0 +1,10 @@
+kb_mouse
+lid_open
+webcam &
+parcellite -d
+redshift &
+syndaemon -i 2.0 -K -R&
+nm-applet &
+jupiter &
+pulseaudio --start &
+yum makecache

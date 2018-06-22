@@ -1,0 +1,197 @@
+### i3 config
+# Evan Widloski - 2015-08-21 
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+## set Modifier keys
+set $mod Mod3
+set $mod_b Mod1
+
+## Set font
+set $font Terminus
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font xft:terminus:pixelsize=16
+#font -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*
+# font pango:$font 12
+
+## Dmenu
+bindsym $mod+d exec dmenu_run -b
+
+## Kill focused window
+bindsym $mod+w kill
+
+## Navigation
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+## Mouse options
+focus_follows_mouse no
+# mouse_warping output
+
+## Moving windows
+bindsym $mod+$mod_b+j move left
+bindsym $mod+$mod_b+k move down
+bindsym $mod+$mod_b+l move up
+bindsym $mod+$mod_b+semicolon move right
+bindsym $mod+$mod_b+Left move left
+bindsym $mod+$mod_b+Down move down
+bindsym $mod+$mod_b+Up move up
+bindsym $mod+$mod_b+Right move right
+
+## Splitting windows
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+## Changing window modes
+bindsym $mod+f fullscreen
+bindsym $mod+u floating toggle
+# bindsym $mod+i layout stacking
+bindsym $mod+i layout tabbed
+bindsym $mod+o layout toggle split
+bindsym $mod+s sticky toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+## Changing workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+## Move window to workspace
+bindsym $mod+$mod_b+1 move container to workspace 1
+bindsym $mod+$mod_b+2 move container to workspace 2
+bindsym $mod+$mod_b+3 move container to workspace 3
+bindsym $mod+$mod_b+4 move container to workspace 4
+bindsym $mod+$mod_b+5 move container to workspace 5
+bindsym $mod+$mod_b+6 move container to workspace 6
+bindsym $mod+$mod_b+7 move container to workspace 7
+bindsym $mod+$mod_b+8 move container to workspace 8
+bindsym $mod+$mod_b+9 move container to workspace 9
+bindsym $mod+$mod_b+0 move container to workspace 10
+
+## Restart i3 (preserves session, reloads config and resets i3bar)
+bindsym $mod+t restart
+
+## Exit i3
+bindsym $mod+$mod_b+e exec "i3-msg exit"
+
+## Resizing windows
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+## Disabled shortcuts (which I did not find useful)
+# reload the configuration file
+# bindsym $mod+space+c reload
+# focus the child container
+#bindsym $mod+d focus child
+# switch to workspace
+#bindsym $mod+Shift+Left workspace prev
+#bindsym $mod+Shift_right workspace next
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+
+ 
+## Set theme color variables
+set $blue #0087E8
+set $black #040404
+set $gray #8f8f8f
+set $pink #e89393
+set $black #000000
+set $white #ffffff
+set $orange #f9b107
+
+
+## Window Colors
+#                       Border  BG-Text Indicator
+client.focused          $blue   $blue   $black 
+client.unfocused        $black  $black  $gray
+
+client.urgent           $orange $orange $black
+
+for_window [class="^.*"] border pixel 3
+
+## Statusbar
+bar {
+    position top
+	font pango:$font 12
+    status_command ~/.i3/statusline_evidlo
+    colors {
+        background $black
+        statusline $white
+        separator $gray
+        ## Workspace indicators
+        #                  Border  Fill   Text
+        active_workspace   $black  $black $orange
+        focused_workspace  $blue   $blue  $black
+        inactive_workspace $black  $black $blue
+        urgent_workspace   $orange $black $orange
+    }
+}
+
+
+## Assign Windows and workspaces
+# set primary LVDS1
+# set secondary VGA1
+workspace 1 output $primary
+workspace 2 output $primary
+workspace 3 output $primary
+# workspace 4 output $secondary
+workspace 4 output VGA1
+for_window [title=".*Shutter.*"] floating enable
+for_window [title=".*Figure.*"] floating enable
+assign [class="Octave"] 5
+
+## Begin startup script
+exec ~/.i3/startup
+
+## Custom keyboard shortcuts
+# bindsym $mod+apostrophe exec urxvt-256color
+bindsym $mod+apostrophe exec urxvt256c
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
+bindsym XF86Launch1 exec "amixer set Capture toggle"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym XF86AudioMicMute exec "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+bindsym $mod+y exec "youtube_rockserv"
+bindsym NoSymbol exec "toggle_mic"
+bindsym Print exec "shutter -s"
+bindsym $mod+n exec nautilus
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10"
+bindsym $mod+m exec mpv "$(xsel -o)"
+bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
+bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
+# bindsym $mod+p exec passmenu --type
+# bindsym $mod+Shift+p exec passmenu --type --tabbed
+
+bindsym $mod+b exec fart
