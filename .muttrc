@@ -69,6 +69,7 @@ set sort_aux = 'reverse-last-date-received'
 set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
 set date_format = '%Y-%m-%d'
 set auto_tag = yes
+set mime_forward = yes
 # editor for composing emails
 set editor = "emacsclient -tc"
 # try to open as plaintext email, fall back to html
