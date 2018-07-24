@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(go
+   '(windows-scripts
+     go
      ;; auto-completion
      vimscript
      php
@@ -255,7 +256,7 @@ values."
    ;; If non nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-mode-line-unicode-symbols nil
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
@@ -317,16 +318,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
   (with-eval-after-load 'org
-  (setq-default dotspacemacs-configuration-layers
-                '((org :variables org-enable-github-support t)))
-  (setq org-confirm-babel-evaluate nil
-        org-src-fontify-natively t
-        org-src-tab-acts-natively t)
-
-  (org-babel-do-load-languages
-  'org-babel-load-languages
-  '((python     . t)
-    )))
+    (setq-default dotspacemacs-configuration-layers
+                  '((org :variables org-enable-github-support t)))
+    (setq org-confirm-babel-evaluate nil
+          org-src-fontify-natively t
+          org-src-tab-acts-natively t)
+    (eval-after-load "preview"
+      '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python     . t)
+       )))
   )
 
 (defun dotspacemacs/user-config ()
@@ -514,12 +516,12 @@ This function is called at the very end of Spacemacs initialization."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(org-babel-python-command "python3")
  '(org-export-use-babel nil)
- '(org-image-actual-width 400)
+ '(org-image-actual-width 400 t)
  '(org-latex-listings nil)
- '(org-src-tab-acts-natively t)
+ '(org-src-tab-acts-natively t t)
  '(package-selected-packages
    (quote
-    (org-mime autothemer auctex-latexmk org-category-capture ghub async let-alist dash packed helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell yasnippet-snippets ein request-deferred auto-complete websocket deferred wolfram-mode polymode vimrc-mode dactyl-mode thrift stan-mode scad-mode qml-mode matlab-mode julia-mode arduino-mode php-extras phpunit phpcbf php-auto-yasnippets drupal-mode php-mode yaml-mode powerline smartparens evil helm helm-core csv-mode diminish lua-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode less-css-mode hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-css-scss haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode disaster cython-mode cmake-mode clang-format auctex anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (powershell counsel-gtags org-mime autothemer auctex-latexmk org-category-capture ghub async let-alist dash packed helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell yasnippet-snippets ein request-deferred auto-complete websocket deferred wolfram-mode polymode vimrc-mode dactyl-mode thrift stan-mode scad-mode qml-mode matlab-mode julia-mode arduino-mode php-extras phpunit phpcbf php-auto-yasnippets drupal-mode php-mode yaml-mode powerline smartparens evil helm helm-core csv-mode diminish lua-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode less-css-mode hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-css-scss haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode disaster cython-mode cmake-mode clang-format auctex anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(powerline-default-separator (quote utf-8))
  '(scroll-margin 20)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))

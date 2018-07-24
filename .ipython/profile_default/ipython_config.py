@@ -7,8 +7,9 @@ c.InteractiveShellApp.exec_lines = [
     'from matplotlib import pyplot as plt',
     '%load_ext autoreload',
     '%autoreload 2',
-    'np.set_printoptions(linewidth=9999, precision=2, suppress=True)',
+    # 'np.set_printoptions(linewidth=9999, precision=2, suppress=True)',
     '%matplotlib',
+    'np.seterr(all=\'print\')',
 ]
 c.InteractiveShell.autoindent = True
 c.InteractiveShell.confirm_exit = False
