@@ -54,7 +54,7 @@ trap 'printf "\e[0m" "$_"' DEBUG
 HISTFILESIZE=10000000
 HISTSIZE=10000000
 # append to .bash_history and reread after each command
-export PROMPT_COMMAND="$PROMPT_COMMAND;history -a;"
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 # append to .bash_history instead of overwriting
 shopt -s histappend
 # dont allow repeated lines

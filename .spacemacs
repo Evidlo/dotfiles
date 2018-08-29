@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(windows-scripts
+   '(systemd
+     windows-scripts
      go
      ;; auto-completion
      vimscript
@@ -514,18 +515,12 @@ This function is called at the very end of Spacemacs initialization."
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
- '(org-babel-python-command "python3")
- '(org-export-use-babel nil)
- '(org-image-actual-width 400 t)
- '(org-latex-listings nil)
- '(org-src-tab-acts-natively t t)
  '(package-selected-packages
    (quote
-    (powershell counsel-gtags org-mime autothemer auctex-latexmk org-category-capture ghub async let-alist dash packed helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell yasnippet-snippets ein request-deferred auto-complete websocket deferred wolfram-mode polymode vimrc-mode dactyl-mode thrift stan-mode scad-mode qml-mode matlab-mode julia-mode arduino-mode php-extras phpunit phpcbf php-auto-yasnippets drupal-mode php-mode yaml-mode powerline smartparens evil helm helm-core csv-mode diminish lua-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode less-css-mode hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-css-scss haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode disaster cython-mode cmake-mode clang-format auctex anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (systemd org-mime autothemer auctex-latexmk org-category-capture ghub async let-alist dash packed helm-company helm-c-yasnippet fuzzy company-web web-completion-data company-tern dash-functional tern company-statistics company-c-headers company-auctex company-anaconda company auto-yasnippet ac-ispell yasnippet-snippets ein request-deferred auto-complete websocket deferred wolfram-mode polymode vimrc-mode dactyl-mode thrift stan-mode scad-mode qml-mode matlab-mode julia-mode arduino-mode php-extras phpunit phpcbf php-auto-yasnippets drupal-mode php-mode yaml-mode powerline smartparens evil helm helm-core csv-mode diminish lua-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode yapfify xterm-color web-mode unfill tagedit smeargle slim-mode shell-pop scss-mode sass-mode pyvenv pytest pyenv-mode py-isort pug-mode pony-mode pip-requirements orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode less-css-mode hy-mode htmlize helm-pydoc helm-gtags helm-gitignore helm-css-scss haml-mode gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md ggtags flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help emmet-mode disaster cython-mode cmake-mode clang-format auctex anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(powerline-default-separator (quote utf-8))
  '(scroll-margin 20)
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
- '(tab-stop-list (quote (4 8 12)))
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
  '(vc-annotate-background-mode nil)
@@ -539,5 +534,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822" :family "Terminus" :foundry "xos4" :slant normal :weight normal :height 105 :width normal)) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C" :family "Terminus" :foundry "xos4" :slant normal :weight normal :height 105 :width normal)))))
 )
