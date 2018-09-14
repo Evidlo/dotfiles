@@ -5,7 +5,7 @@
 set $mod mod4
 set $mod_b mod1
 # assign Capslock to Mod4, use Left Windows key as compose key
-exec "setxkbmap -option caps:super,compose:lwin"
+exec "setxkbmap -layout us -option caps:super,compose:lwin"
 
 # Set font
 set $font Terminus

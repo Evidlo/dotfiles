@@ -73,7 +73,7 @@ set mime_forward = yes
 # editor for composing emails
 set editor = "emacsclient -tc"
 # try to open as plaintext email, fall back to html
-alternative_order text/html text/plain
+alternative_order text/plain text/html
 hdr_order Date From To Cc
 auto_view text/html
 # open threads with new mail
@@ -86,6 +86,8 @@ set collapse_unread = no
 unset markers
 # hide 'Press any key to conintue...'
 set nowait_key
+# autocomplete email address
+set query_command = "notmuch-address %s"
 # hide 'autoview using elinks' messages
 # set display_filter="sed -e '/^\[-- Autoview using .* --]$/d'"
 # set display_filter="cat"

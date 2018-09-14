@@ -14,6 +14,7 @@ c.InteractiveShellApp.exec_lines = [
 c.InteractiveShell.autoindent = True
 c.InteractiveShell.confirm_exit = False
 c.InteractiveShell.deep_reload = True
+c.TerminalInteractiveShell.editing_mode = 'vi'
 import os
 editor =  os.environ.get('EDITOR')
 if editor:
