@@ -1,8 +1,8 @@
-kb_mouse
 lid_open
 webcam &
-parcellite -d
 redshift &
 syndaemon -i 2.0 -K -R&
 pulseaudio --start &
 yum makecache
+autocutsel &
+autocutsel -selection PRIMARY &
