@@ -73,7 +73,7 @@ set mime_forward = yes
 # editor for composing emails
 set editor = "emacsclient -tc"
 # try to open as plaintext email, fall back to html
-alternative_order text/plain text/html
+alternative_order text/html text/plain
 hdr_order Date From To Cc
 auto_view text/html
 # open threads with new mail
