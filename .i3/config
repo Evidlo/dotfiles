@@ -11,7 +11,8 @@ exec "setxkbmap -layout us -option caps:super,compose:lwin"
 set $font Terminus
 
 # dmenu
-bindsym $mod+d exec dmenu_run -b
+# bindsym $mod+d exec dmenu_run -b
+bindsym $mod+d exec rofi -show run
 # restart i3 (preserves session, reloads config and resets i3bar)
 bindsym $mod+t restart
 # exit i3
@@ -150,5 +151,7 @@ bindsym $mod+n exec nautilus
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
 bindsym $mod+m exec mpv "$(xsel -o)" --load-unsafe-playlists
-bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
-bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
+# bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
+# bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
+bindsym $mod+p exec ~/resources/venv3/bin/passhole type "rofi -dmenu"
+bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "rofi -dmenu"
