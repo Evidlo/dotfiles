@@ -2,6 +2,7 @@ c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', '!wiki': 'ht
 c.url.default_page = 'https://google.com/'
 c.url.start_pages = ['https://google.com']
 c.completion.use_best_match = True
+c.content.host_blocking.whitelist = ['www.rapidvideo.com']
 
 config.bind('<Ctrl-H>', 'rl-unix-filename-rubout', mode='command')
 config.bind(';m', 'hint links spawn -d mpv {hint-url}')
