@@ -6,6 +6,7 @@ c.InteractiveShellApp.exec_lines = [
     'import numpy as np',
     'from matplotlib import pyplot as plt',
     '%load_ext autoreload',
+    '%load_ext ipython_cells',
     '%autoreload 2',
     # 'np.set_printoptions(linewidth=9999, precision=2, suppress=True)',
     '%matplotlib',
