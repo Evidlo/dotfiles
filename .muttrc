@@ -94,7 +94,7 @@ set query_command = "notmuch-address %s"
 
 #---------- Colors ----------
 # homebrew monokai theme
-set my_background = "color234"
+set my_background = "black"
 set my_gray = "color245"
 set my_magenta = "color198"
 set my_brightmagenta = "brightcolor198"

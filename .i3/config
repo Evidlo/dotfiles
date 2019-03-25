@@ -99,14 +99,15 @@ bindsym $mod+v split v
  
 # ----- Theming -----
 set $blue #0087E8
-set $black #040404
-set $gray #8f8f8f
+set $black #000000
+set $gray #878787
 set $pink #e89393
 set $black #000000
 set $white #ffffff
-set $orange #f9b107
+set $orange #FF8700
 #                       Border  BG-Text Indicator
 client.focused          $blue   $blue   $black 
+client.focused_inactive $black  $black  $black 
 client.unfocused        $black  $black  $gray
 client.urgent           $orange $orange $black
 # set border on all windows
