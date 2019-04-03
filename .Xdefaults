@@ -2,41 +2,50 @@
 ! Evidlo's URxvt settings - 2015-09-24
 !-------------------------------------------------------------------------------
 
+URxvt.termName:             xterm-256color
 !!! Format Settings !!!
 URxvt.depth:                32
 URxvt.geometry:             90x30
-URxvt.transparent:          false
-URxvt.fading:               0
+URxvt.transparent:          true
+URxvt.shading:              20
+! URxvt.fading:               10
+URxvt.internalBorder:       10
 URxvt.urgentOnBell:         true
 !URxvt.visualBell:           true
 URxvt.loginShell:           true
 URxvt.saveLines:            10000
-URxvt.internalBorder:       1
+URxvt.internalBorder:       10
 URxvt.lineSpace:            0
 
 !!! Fonts !!!
 ! Note: certain characters may not render correctly if the font is too small
 ! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
-!URxvt.font:                 -*-terminus-*-r-*-*-*-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
-URxvt.font: xft:Terminus:size=12
-!URxvt.font:                xft:Waltograph:size=20
-!URxvt.boldFont:             -*-terminus-bold-r-*-*-*-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
-!URxvt.BOLDfont:            xft:WaltographUI:size=14
+URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+
+!!! Font Size Shortcuts !!!
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+URxvt.keysym.C-equal:  font-size:reset
+URxvt.keysym.C-slash:  font-size:show
 
 ! Fix font space
 ! URxvt*letterSpace: 4
+
+!!! Scroll Shortcuts !!!
+URxvt.keysym.Shift-Up:   command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
 
 !!! Scrollbar !!!
 URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true
 
-
 !!! Perl extensions !!!
-Urxvt*perl-lib:    /usr/lib/urxvt/perl/
-URxvt.perl-ext-common:      default,matcher,keyboard-select,url-select
-URxvt.matcher.button:       1
-
+URxvt.perl-ext-common:      keyboard-select,font-size,url-select,selection-to-clipboard
+URxvt.matcher.button:       2
 
 !!! Cursor !!!
 URxvt.cursorBlink:          true
@@ -46,17 +55,14 @@ URxvt.cursorUnderline:      false
 !!! Pointer !!!
 URxvt.pointerBlank:         true
 
-!!! Colors !!!
-URxvt.foreground:           #ffffff
-URxvt.background:           #000000
-
 !!! Keyboard Select !!!
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 
-!!! Open youtubeliks in your own youtubescript
-URxvt*matcher.pattern.3:        \\bhttp:\/\/(www.youtube|youtube).com\/watch\\?v=([\\w-]*)
-URxvt*matcher.launcher.3:    mpv $2
-
 ! URL Select
 URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.url-select.autocopy:  true
+
+*.background: #000000
+*.foreground:   #eeeeee
+*.cursorColor:  #d1d1d1
