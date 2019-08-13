@@ -108,6 +108,12 @@ do
 
     # ----- Format and print data -----
     printf ",["
+
+    if [ -f /tmp/statusline_evidlo ]
+    then
+        cat /tmp/statusline_evidlo
+    fi
+
     printf "{\"name\":\"\",\"color\":\"#ffff00\",\"full_text\":\"%s\"},"   "$ip_addr"
     printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"},"   "$xfin"
     printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"},"   "$mins_used"
