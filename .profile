@@ -46,6 +46,11 @@ if [[ -d $HOME/.cargo/bin ]]
 then
     PATH=$PATH:$HOME/.cargo/bin
 fi
+# add bpkg bin to path if it exists
+if [[ -d $HOME/deps/bin ]]
+then
+    PATH=$PATH:$HOME/deps/bin
+fi
 # add go bin to path if it exists
 if [[ -d $HOME/resources/go/bin ]]
 then
