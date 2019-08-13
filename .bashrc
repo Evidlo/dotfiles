@@ -52,6 +52,7 @@ trap 'printf "\e[0m" "$_"' DEBUG
 # -------- History --------
 #increase bash history
 HISTFILESIZE=10000000
+HISTTIMEFORMAT="%FT%R "
 HISTSIZE=10000000
 # append to .bash_history and reread after each command
 export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
@@ -59,3 +60,14 @@ export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 shopt -s histappend
 # dont allow repeated lines
 export HISTCONTROL=ignoredups:erasedups
+
+# backup history/warn about deleted history
+if (( $(wc -l < ~/.bash_history) < 5000 ))
+then
+    echo "#######################"
+    echo ".bash_history was cleared"
+    echo "#######################"
+else
+    cp ~/.bash_history ~/.bash_history.back
+fi
+
