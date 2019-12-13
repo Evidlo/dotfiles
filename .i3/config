@@ -114,6 +114,7 @@ client.unfocused        $gray         $gray       $black
 client.urgent           $orange       $orange     $black
 # set border on all windows
 for_window [class="^.*"] border pixel 3
+for_window [class="^.*Matplotlib.*"] border normal
 
 # ----- Status Bar -----
 bar {
@@ -156,6 +157,6 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
 bindsym $mod+m exec mpv "$(xsel -o)" --load-unsafe-playlists
 # bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
 # bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
-bindsym $mod+p exec ~/resources/venv3/bin/passhole type "rofi -dmenu"
-bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "rofi -dmenu"
+bindsym $mod+p exec ~/resources/venv3/bin/passhole type passhole --prog "rofi -dmenu"
+bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type passhole --tabbed --prog "rofi -dmenu"
 bindsym $mod+x exec sh -c "xdotool type $(illinikey)"
