@@ -10,6 +10,7 @@ fi
 #start emacs daemon if not already running
 export EDITOR="emacsclient -tc"
 export ALTERNATE_EDITOR=""
+tabs -4
 
 # -------- PATH --------
 # add bin and subdirectories to path if it exists
