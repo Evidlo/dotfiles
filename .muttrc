@@ -94,8 +94,10 @@ set query_command = "notmuch-address %s"
 
 #---------- Colors ----------
 # homebrew monokai theme
-set my_background = "black"
+# set my_background = "black"
+set my_background = "default"
 set my_gray = "color245"
+set my_black = "black"
 set my_magenta = "color198"
 set my_brightmagenta = "brightcolor198"
 set my_green = "color112"
@@ -133,6 +135,6 @@ color header brightwhite $my_background "^(Subject)"
 color search $my_lavender $my_background
 color status $my_gray $my_darkgray
 # header/footer menu
-color indicator $my_background $my_tan
+color indicator $my_black $my_tan
 # thread tree arrows
 color tree $my_tan $my_background
