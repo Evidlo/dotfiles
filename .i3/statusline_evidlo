@@ -40,7 +40,7 @@ do
     fi
 
     ### Datetime
-    datetime=$(date "+%k:%M")
+    datetime=$(date "+%H:%M")
 
     ### CPU temp
     cputemp=$(acpi -t|awk '{print $4$6}')
