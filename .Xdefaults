@@ -6,7 +6,7 @@ URxvt.termName:             xterm-256color
 !!! Format Settings !!!
 URxvt.depth:                32
 URxvt.geometry:             90x30
-URxvt.transparent:          true
+! URxvt.transparent:          true
 URxvt.shading:              20
 ! URxvt.fading:               10
 URxvt.internalBorder:       10
@@ -21,8 +21,8 @@ URxvt.lineSpace:            0
 ! Note: certain characters may not render correctly if the font is too small
 ! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
-URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
-URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-*,xft:DejaVu Sans:pixelsize=12
+URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
+URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
 
 !!! Font Size Shortcuts !!!
 URxvt.keysym.C-Up:     font-size:increase
