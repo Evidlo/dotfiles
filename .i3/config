@@ -142,9 +142,10 @@ workspace 4 output VGA1
 # auto-float windows
 for_window [title=".*Shutter.*"] floating enable
 for_window [title=".*Figure.*"] floating enable
+for_window [instance="floating"] floating enable
 
 # ----- Program Shortcuts -----
-bindsym $mod+apostrophe exec urxvt256c || urxvt-256color || urxvt
+bindsym $mod+apostrophe exec urxvt256c || urxvt-256color || urxvt || xterm
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
 bindsym XF86Launch1 exec "amixer set Capture toggle"
@@ -160,3 +161,4 @@ bindsym $mod+m exec mpv "$(xsel -o)" --load-unsafe-playlists
 bindsym $mod+p exec ~/resources/venv3/bin/passhole type passhole --prog "rofi -dmenu"
 bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type passhole --tabbed --prog "rofi -dmenu"
 bindsym $mod+x exec sh -c "xdotool type $(illinikey)"
+bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer
