@@ -16,7 +16,8 @@ tabs -4
 # add bin and subdirectories to path if it exists
 if [[ -d $HOME/bin ]]
 then
-    PATH=$(find -L $HOME/bin/ -type d -printf ":%p"):$PATH
+    PATH=$PATH:$HOME/bin
+    # PATH=$(find -L $HOME/bin/ -type d -printf ":%p"):$PATH
 fi
 # add scripts folder to path if it exists
 if [[ -d $HOME/resources/scripts ]]
@@ -41,6 +42,11 @@ if [[ -d $HOME/resources/venv3 ]]
 then
     export VIRTUAL_ENV_DISABLE_PROMPT=1
     source $HOME/resources/venv3/bin/activate
+    export PYTHON3_HOST_PROG="$HOME/resources/venv3/bin/python"
+fi
+if [[ -d $HOME/resources/venv ]]
+then
+    export PYTHON_HOST_PROG="$HOME/resources/venv/bin/python"
 fi
 # add rust bin to path if it exists
 if [[ -d $HOME/.cargo/bin ]]

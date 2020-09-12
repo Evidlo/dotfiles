@@ -148,7 +148,8 @@ for_window [instance="floating"] floating enable
 bindsym $mod+apostrophe exec urxvt256c || urxvt-256color || urxvt || xterm
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
-bindsym XF86Launch1 exec "amixer set Capture toggle"
+# bindsym XF86Launch1 exec "amixer set Capture toggle"
+bindsym XF86Launch1 exec "xfce4-terminal --fullscreen --command=/tmp/shkype.sh"
 bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 bindsym XF86AudioMicMute exec "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
 bindsym Print exec "shutter -s"
@@ -158,7 +159,7 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
 bindsym $mod+m exec mpv "$(xsel -o)" --load-unsafe-playlists
 # bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
 # bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
-bindsym $mod+p exec ~/resources/venv3/bin/passhole type passhole --prog "rofi -dmenu"
-bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type passhole --tabbed --prog "rofi -dmenu"
+bindsym $mod+p exec ~/bin/ph type passhole --prog "rofi -dmenu"
+bindsym $mod+Shift+p exec ~/bin/ph type passhole --tabbed --prog "rofi -dmenu"
 bindsym $mod+x exec sh -c "xdotool type $(illinikey)"
 bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer

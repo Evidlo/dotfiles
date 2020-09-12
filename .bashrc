@@ -42,6 +42,11 @@ if [[ -f /usr/share/autojump/autojump.bash ]]
 then
     source /usr/share/autojump/autojump.bash
 fi
+if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]
+then
+    source /usr/share/fzf/shell/key-bindings.bash
+fi
+
 
 # -------- Prompt --------
 #modify ps1
