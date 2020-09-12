@@ -24,6 +24,7 @@ ignore "DKIM-Signature:"
 
 #------- Key bindings --------
 bind index c mail
+bind index,pager R group-reply
 bind index <tab> collapse-thread
 bind index,pager J next-thread
 bind index,pager K previous-thread
@@ -40,7 +41,7 @@ bind pager gg top
 bind pager G bottom
 bind pager J next-undeleted
 bind pager K previous-undeleted
-bind index R imap-fetch-mail
+bind index T imap-fetch-mail
 bind index,pager m sidebar-toggle-visible
 bind index o modify-labels
 # vimlike page up/down
@@ -64,6 +65,7 @@ set mailcap_path = ~/.config/mutt/mailcap
 # dont move read messages out of inbox
 set move = no
 set include
+set allow_ansi = yes
 set sort = 'threads'
 set sort_aux = 'reverse-last-date-received'
 set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
@@ -91,6 +93,8 @@ set query_command = "notmuch-address %s"
 # hide 'autoview using elinks' messages
 # set display_filter="sed -e '/^\[-- Autoview using .* --]$/d'"
 # set display_filter="cat"
+# email aliases
+source ~/.mutt/groups
 
 #---------- Colors ----------
 # homebrew monokai theme
