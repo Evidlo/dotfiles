@@ -5,16 +5,17 @@
 set $mod mod4
 set $mod_b mod1
 # assign Capslock to Mod4, use Left Windows key as compose key
-exec "setxkbmap -layout us -option caps:super,compose:lwin"
+exec "setxkbmap -layout us -option caps:super,compose:lwin,compose:rctrl"
 
 # Set font
 set $font Terminus
 
 # dmenu
 # bindsym $mod+d exec dmenu_run -b
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec "rofi -modi combi -show combi -combi-modi run,drun || dmenu_run -b"
 # restart i3 (preserves session, reloads config and resets i3bar)
-bindsym $mod+t restart
+# bindsym $mod+t restart
+bindsym $mod+t reload
 # exit i3
 bindsym $mod+$mod_b+e exec "i3-msg exit"
 # kill focused window
@@ -135,17 +136,18 @@ bar {
 
 # ----- Workspace and Program Assignment -----
 # assign workspaces to monitors
-workspace 1 output LVDS1
-workspace 2 output LVDS1
-workspace 3 output LVDS1
-workspace 4 output VGA1
+workspace 1 output VGA-1
+workspace 2 output VGA-1
+workspace 3 output VGA-1
+workspace 4 output LVDS-1
+workspace 5 output LVDS-1
 # auto-float windows
 for_window [title=".*Shutter.*"] floating enable
 for_window [title=".*Figure.*"] floating enable
 for_window [instance="floating"] floating enable
 
 # ----- Program Shortcuts -----
-bindsym $mod+apostrophe exec urxvt256c || urxvt-256color || urxvt || xterm
+bindsym $mod+apostrophe exec darktile || urxvt256c || urxvt-256color || urxvt || xterm
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
 # bindsym XF86Launch1 exec "amixer set Capture toggle"
@@ -156,10 +158,20 @@ bindsym Print exec "shutter -s"
 bindsym $mod+n exec nautilus
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
-bindsym $mod+m exec mpv "$(xsel -o)" --load-unsafe-playlists
+bindsym $mod+m exec PATH=/home/evan/resources/venv3/bin:$PATH mpv "$(xsel -o || wl-paste)" --load-unsafe-playlists 2>&1 >> /tmp/mpv_log
+bindsym $mod+e exec rofimoji -s light
+bindsym $mod+c exec env > /tmp/dump
 # bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
 # bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
-bindsym $mod+p exec ~/bin/ph type passhole --prog "rofi -dmenu"
-bindsym $mod+Shift+p exec ~/bin/ph type passhole --tabbed --prog "rofi -dmenu"
-bindsym $mod+x exec sh -c "xdotool type $(illinikey)"
-bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer
+bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type passhole --prog "rofi -dmenu" --xdotool
+bindsym $mod+Shift+p exec /home/evan/resources/venv3/bin/ph type passhole --tabbed --prog "rofi -dmenu" --xdotool
+# bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type --prog
+bindsym $mod+x exec sh -c "xdotool type --delay 15 $(/home/evan/resources/venv3/bin/illinikey)"
+# bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer
+# bindsym $mod+y exec sh -c "echo hi >> /tmp/err && export DISPLAY=:0 && sleep .5 && xdotool type foobar 2>&1 >> /tmp/err"
+# bindsym $mod+y exec sh -c "xdotool type foobar"
+bindsym $mod+y exec sh -c "/home/evan/resources/venv3/bin/illinikey 2>&1 >> /tmp/err && echo new >> /tmp/err"
+
+# ----- Startup -----
+exec_always --no-startup-id ~/resources/venv3/bin/flashfocus -t 100 -o 0
+exec_always --no-startup-id nm_applet -t 100 -o 0
