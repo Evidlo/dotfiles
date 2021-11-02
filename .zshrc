@@ -34,7 +34,7 @@ fi
 if [ -d $HOME/.pyenv ]
 then
     PATH=$PATH:$HOME/.pyenv/bin
-    eval "$(pyenv init -)"
+    #eval "$(pyenv init -)"
 fi
 
 export PATH
