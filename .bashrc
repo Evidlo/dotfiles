@@ -28,7 +28,7 @@ fi
 
 #source default bashrc
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 #set to vim mode
@@ -76,3 +76,4 @@ else
     cp ~/.bash_history ~/.bash_history.back
 fi
 
+source ~/.profile
