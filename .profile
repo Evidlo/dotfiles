@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Evan Widloski - 2018-07-22
 
 #set keyboard repeat rate
@@ -11,12 +13,14 @@ fi
 export EDITOR="emacsclient -tc"
 export ALTERNATE_EDITOR=""
 tabs -4
+# dont prompt to restart services constantly
+export DEBIAN_FRONTEND=noninteractive
 
 # -------- PATH --------
 # add bin and subdirectories to path if it exists
 if [[ -d $HOME/bin ]]
 then
-    PATH=$PATH:$HOME/bin
+    PATH=$HOME/bin:$PATH
     # PATH=$(find -L $HOME/bin/ -type d -printf ":%p"):$PATH
 fi
 # add scripts folder to path if it exists
@@ -48,6 +52,16 @@ if [[ -d $HOME/resources/venv ]]
 then
     export PYTHON_HOST_PROG="$HOME/resources/venv/bin/python"
 fi
+# add homebrew
+if [[ -d $HOME/.linuxbrew ]]
+then
+    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+fi
+# add ruby
+if [[ -d $HOME/.gem/ruby/2.7.0/bin ]]
+then
+    PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
+fi
 # add rust bin to path if it exists
 if [[ -d $HOME/.cargo/bin ]]
 then
@@ -72,6 +86,10 @@ then
     export NODE_PATH
     export MAN_PATH
 fi
+if [[ -d /var/lib/flatpak/exports/bin ]]
+then
+    PATH=$PATH:/var/lib/flatpak/exports/bin
+fi
 
 export PATH
 
@@ -83,5 +101,3 @@ function rootname(){ echo "${1%.*}"; }
 
 #Start and EXit - function to start a command in the background and close terminal (useful for opening pdfs)
 sex(){ ("$@" <>/dev/null >&0 2>&0 &) ; exit ;}
-
-export PATH="$HOME/.cargo/bin:$PATH"
