@@ -6,7 +6,13 @@ set imap_user = "evanwidloski@gmail.com"
 set imap_pass = `ph show --field password gmail`
 set smtp_url = "smtp://evanwidloski@smtp.gmail.com:587/"
 set smtp_pass = `ph show --field password gmail`
+
 set from = "evan@evanw.org"
+#set from = "evan@widloski.com"
+set envelope_from
+set use_from = "yes"
+set reverse_name = "yes"
+
 set realname = "Evan Widloski"
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
@@ -72,6 +78,8 @@ set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
 set date_format = '%Y-%m-%d'
 set auto_tag = yes
 set mime_forward = yes
+# proper threading
+set strict_threads = yes
 # editor for composing emails
 set editor = "emacsclient -tc"
 # try to open as plaintext email, fall back to html
@@ -83,7 +91,7 @@ set uncollapse_new = yes
 # jump to unread message in thread
 set uncollapse_jump = yes
 # dont collapse threads with unread
-set collapse_unread = no
+# set collapse_unread = no
 # folder-hook . push '<collapse-all>'
 unset markers
 # hide 'Press any key to conintue...'
@@ -95,6 +103,7 @@ set query_command = "notmuch-address %s"
 # set display_filter="cat"
 # email aliases
 source ~/.mutt/groups
+unset attach_save_without_prompting
 
 #---------- Colors ----------
 # homebrew monokai theme
