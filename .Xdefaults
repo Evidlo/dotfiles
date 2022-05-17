@@ -7,22 +7,21 @@ URxvt.termName:             xterm-256color
 URxvt.depth:                32
 URxvt.geometry:             90x30
 ! URxvt.transparent:          true
-URxvt.shading:              20
+! URxvt.shading:              20
 ! URxvt.fading:               10
-URxvt.internalBorder:       10
 URxvt.urgentOnBell:         true
 !URxvt.visualBell:           true
 URxvt.loginShell:           true
 URxvt.saveLines:            10000
-URxvt.internalBorder:       10
+URxvt.internalBorder:       1
 URxvt.lineSpace:            0
 
 !!! Fonts !!!
 ! Note: certain characters may not render correctly if the font is too small
 ! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
-URxvt.font:                 -*-terminus-medium-*-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
-URxvt.boldFont:             -*-terminus-bold-*-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
+URxvt.font:                 -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
+URxvt.boldFont:             -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
 
 !!! Font Size Shortcuts !!!
 URxvt.keysym.C-Up:     font-size:increase
@@ -31,6 +30,7 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 URxvt.keysym.C-equal:  font-size:reset
 URxvt.keysym.C-slash:  font-size:show
+URxvt.font-size.step: 4
 
 ! Fix font space
 ! URxvt*letterSpace: 4
@@ -58,6 +58,11 @@ URxvt.pointerBlank:         true
 !!! Keyboard Select !!!
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
+! Restore Ctrl+Shift+(c|v)
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! URL Select
 URxvt.keysym.M-u:           perl:url-select:select_next
