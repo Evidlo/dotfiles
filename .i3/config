@@ -5,14 +5,14 @@
 set $mod mod4
 set $mod_b mod1
 # assign Capslock to Mod4, use Left Windows key as compose key
-exec "setxkbmap -layout us -option caps:super,compose:lwin,compose:rctrl"
+exec "setxkbmap -layout us -option caps:super,compose:lwin,compose:ralt"
 
 # Set font
 set $font Terminus
 
 # dmenu
 # bindsym $mod+d exec dmenu_run -b
-bindsym $mod+d exec "rofi -modi combi -show combi -combi-modi run,drun || dmenu_run -b"
+bindsym $mod+d exec "rofi -modi combi -show combi -combi-modi run,drun" || dmenu_run -b
 # restart i3 (preserves session, reloads config and resets i3bar)
 # bindsym $mod+t restart
 bindsym $mod+t reload
@@ -147,7 +147,7 @@ for_window [title=".*Figure.*"] floating enable
 for_window [instance="floating"] floating enable
 
 # ----- Program Shortcuts -----
-bindsym $mod+apostrophe exec darktile || urxvt256c || urxvt-256color || urxvt || xterm
+bindsym $mod+apostrophe exec urxvt || darktile || urxvt256c || urxvt-256color || urxvt || xterm
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
 # bindsym XF86Launch1 exec "amixer set Capture toggle"
