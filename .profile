@@ -8,6 +8,9 @@ then
     xset r rate 200 30
 fi
 
+# change cursor to blinking pipe
+echo -e "\033[5 q"
+
 # -------- Application Settings --------
 #start emacs daemon if not already running
 export EDITOR="emacsclient -tc"
@@ -95,7 +98,7 @@ export PATH
 
 # -------- Aliases --------
 alias ls="ls --color=auto"
-alias e="emacsclient -tc"
+alias e="emacsclient -t"
 alias emacs="emacsclient -c"
 function rootname(){ echo "${1%.*}"; }
 
