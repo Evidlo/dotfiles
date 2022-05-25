@@ -12,7 +12,7 @@ set $font Terminus
 
 # dmenu
 # bindsym $mod+d exec dmenu_run -b
-bindsym $mod+d exec "rofi -modi combi -show combi -combi-modi run,drun" || dmenu_run -b
+bindsym $mod+d exec "rofi -modi combi -show combi -combi-modi run,drun || dmenu_run -b"
 # restart i3 (preserves session, reloads config and resets i3bar)
 # bindsym $mod+t restart
 bindsym $mod+t reload
