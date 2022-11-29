@@ -9,7 +9,7 @@ then
 fi
 
 # change cursor to blinking pipe
-echo -e "\033[5 q"
+# echo -e "\033[5 q"
 
 # -------- Application Settings --------
 #start emacs daemon if not already running
@@ -25,6 +25,11 @@ if [[ -d $HOME/bin ]]
 then
     PATH=$HOME/bin:$PATH
     # PATH=$(find -L $HOME/bin/ -type d -printf ":%p"):$PATH
+fi
+# add local bin
+if [[ -d $HOME/.local/bin ]]
+then
+    PATH=$HOME/.local/bin:$PATH
 fi
 # add scripts folder to path if it exists
 if [[ -d $HOME/resources/scripts ]]
@@ -100,6 +105,7 @@ export PATH
 alias ls="ls --color=auto"
 alias e="emacsclient -t"
 alias emacs="emacsclient -c"
+alias bat="batcat"
 function rootname(){ echo "${1%.*}"; }
 
 #Start and EXit - function to start a command in the background and close terminal (useful for opening pdfs)

@@ -78,6 +78,7 @@ set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
 set date_format = '%Y-%m-%d'
 set auto_tag = yes
 set mime_forward = yes
+set forward_attachments = yes
 # proper threading
 set strict_threads = yes
 # editor for composing emails
@@ -104,6 +105,7 @@ set query_command = "notmuch-address %s"
 # email aliases
 source ~/.mutt/groups
 unset attach_save_without_prompting
+set abort_unmodified=ask-no
 
 #---------- Colors ----------
 # homebrew monokai theme
