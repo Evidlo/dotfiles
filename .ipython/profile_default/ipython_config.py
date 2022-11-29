@@ -31,6 +31,7 @@ c.InteractiveShell.confirm_exit = False
 # set vi editin mode
 c.TerminalInteractiveShell.editing_mode = 'vi'
 c.TerminalInteractiveShell.prompt_includes_vi_mode = False
+c.TerminalInteractiveShell.emacs_bindings_in_vi_insert_mode = False
 # increase history length
 c.TerminalInteractiveShell.history_length = 20000
 c.TerminalInteractiveShell.history_load_length = 20000
@@ -40,3 +41,5 @@ c.TerminalInteractiveShell.history_load_length = 20000
 # editor =  os.environ.get('EDITOR')
 # if editor:
 #     c.InteractiveShell.editor = editor
+
+# c.TerminalInteractiveShell.highlighting_style = 'monokai'
