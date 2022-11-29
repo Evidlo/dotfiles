@@ -2,3 +2,5 @@
 
 # make readline programs navigate like vi
 set editing-mode vi
+set colored-stats on
+set bell-style none
