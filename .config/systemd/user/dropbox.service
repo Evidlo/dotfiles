@@ -1,0 +1,13 @@
+[Unit]
+Description=Dropbox
+
+[Service]
+# program to execute
+ExecStart=/home/evan/.dropbox-dist/dropboxd
+# restart if program crashes
+Restart=always
+# user to run program as (comment this line for user units)
+# User=evan
+
+[Install]
+WantedBy=multi-user.target

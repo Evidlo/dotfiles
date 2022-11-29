@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: columns
+# key: trigger-key
+# condition: t
+# --
+:::::: {.columns}
+
+$0
+
+::::::
