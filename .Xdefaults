@@ -13,7 +13,7 @@ URxvt.urgentOnBell:         true
 !URxvt.visualBell:           true
 URxvt.loginShell:           true
 URxvt.saveLines:            10000
-URxvt.internalBorder:       1
+URxvt.internalBorder:       5
 URxvt.lineSpace:            0
 
 !!! Fonts !!!
