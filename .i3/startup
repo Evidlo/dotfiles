@@ -1,3 +1,4 @@
+nm-applet
 lid_open
 webcam &
 redshift &
@@ -6,3 +7,4 @@ pulseaudio --start &
 yum makecache
 autocutsel &
 autocutsel -selection PRIMARY &
+dunst &
