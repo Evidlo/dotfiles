@@ -121,7 +121,9 @@ for_window [class="^.*Matplotlib.*"] border normal
 bar {
     position top
     font pango:$font 12
-    status_command ~/.i3/statusline_evidlo
+    # status_command ~/.i3/statusline_evidlo
+    status_command ~/.i3/statusline.py
+    # status_command ~/.i3/testbar
     colors {
         background $black
         statusline $white
@@ -136,11 +138,19 @@ bar {
 
 # ----- Workspace and Program Assignment -----
 # assign workspaces to monitors
-workspace 1 output VGA-1
-workspace 2 output VGA-1
-workspace 3 output VGA-1
-workspace 4 output LVDS-1
-workspace 5 output LVDS-1
+# set $get_primary "xrandr | awk '/ connected primary/{print $1}'"
+# set $get_secondary "xrandr | awk '/ connected primary/{next}/ connected/{print $1;exit}'"
+
+set $primary VGA-1
+set $secondary LVDS-1
+set $primary LVDS-1
+set $secondary VGA-1
+
+workspace 1 output $primary
+workspace 2 output $primary
+workspace 3 output $primary
+workspace 4 output $secondary
+workspace 5 output $secondary
 # auto-float windows
 for_window [title=".*Shutter.*"] floating enable
 for_window [title=".*Figure.*"] floating enable
@@ -150,6 +160,10 @@ for_window [instance="floating"] floating enable
 bindsym $mod+apostrophe exec urxvt || darktile || urxvt256c || urxvt-256color || urxvt || xterm
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
+bindsym XF86AudioNext exec "playerctl next"
+bindsym XF86AudioPrev exec "playerctl previous"
+bindsym XF86AudioStop exec "playerctl stop"
+bindsym XF86AudioPlay exec "playerctl play-pause"
 # bindsym XF86Launch1 exec "amixer set Capture toggle"
 bindsym XF86Launch1 exec "xfce4-terminal --fullscreen --command=/tmp/shkype.sh"
 bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
@@ -171,7 +185,16 @@ bindsym $mod+x exec sh -c "xdotool type --delay 15 $(/home/evan/resources/venv3/
 # bindsym $mod+y exec sh -c "echo hi >> /tmp/err && export DISPLAY=:0 && sleep .5 && xdotool type foobar 2>&1 >> /tmp/err"
 # bindsym $mod+y exec sh -c "xdotool type foobar"
 bindsym $mod+y exec sh -c "/home/evan/resources/venv3/bin/illinikey 2>&1 >> /tmp/err && echo new >> /tmp/err"
+# bindsym $mod+b exec /home/evan/resources/venv3/bin/ph --debug type passhole --prog "rofi -dmenu" --xdotool --otp
+
+
+set $test exec echo hello
+bindsym $mod+g exec echo $get_primary >> /tmp/dump
+
+# bindsym $mod+g exec "/usr/bin/python3 -c \\"import sys; open('/tmp/log', 'a').write(str(sys.stdin.isatty()) + '\n')\\""
+# bindsym $mod+g exec "/usr/bin/python3 -c \\"import subprocess; open('/tmp/log', 'a').write(str(subprocess.check_output('tty')) + '\n')\\""
 
 # ----- Startup -----
 exec_always --no-startup-id ~/resources/venv3/bin/flashfocus -t 100 -o 0
-exec_always --no-startup-id nm_applet -t 100 -o 0
+exec_always --no-startup-id nm-applet -t 100 -o 0
+exec_always --no-startup-id dunst -t 100 -o 0
