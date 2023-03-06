@@ -98,6 +98,11 @@ if [[ -d /var/lib/flatpak/exports/bin ]]
 then
     PATH=$PATH:/var/lib/flatpak/exports/bin
 fi
+# add nix-profile
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]
+then
+    source $HOME/.nix-profile/etc/profile.d/nix.sh;
+fi
 
 export PATH
 
