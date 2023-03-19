@@ -98,7 +98,7 @@ def get_batt():
         return 'discharging', percent, time
     elif 'Charging' in result and percent is not None and time is not None:
         return 'charging', percent, time
-    elif 'Full' in result:
+    elif 'Full' in result or 'Not charging' in result:
         return 'full', None, None
     else:
         return 'unknown', None, None
@@ -208,17 +208,29 @@ def emit_data():
     ]
     print(json.dumps(j, ensure_ascii=False), end=',\n', flush=True)
 
-print(json.dumps({"version": 1}))
-print('[')
-print('[],')
-timers = [Timer(every_1s, 1), Timer(every_30s, 30), Timer(every_300s, 300)]
-try:
+if __name__ == '__main__':
+    # global json dict to emit to i3bar
+    data = {
+        'address': '', 'mins_used': '', 'rate_down': '', 'rate_up': '', 'datetime': '',
+        'batt_color': '', 'batt_level': '', 'cpu_temp': ''
+    }
+    interface = get_default_interface()
+
+    print(json.dumps({"version": 1}))
+    print('[')
+    print('[],')
+    timers = [Timer(every_1s, 1), Timer(every_30s, 30), Timer(every_300s, 300)]
     while True:
-        next_timer = min(timers, key=attrgetter('call_time'))
-        next_timer.sleep_and_run()
-except Exception as e:
-    with open('/tmp/test.log', 'w') as f:
-        traceback.print_exc(file=f)
-        f.write(str(e))
-except KeyboardInterrupt:
-    pass
+        try:
+            next_timer = min(timers, key=attrgetter('call_time'))
+            next_timer.sleep_and_run()
+        except Exception as e:
+            with open('/tmp/test.log', 'w') as f:
+                import traceback
+                traceback.print_exc(file=f)
+                from datetime import datetime
+                f.write(f'Error at time {datetime.now()}')
+                f.write('\n')
+                f.write(str(e))
+        except KeyboardInterrupt:
+            pass
