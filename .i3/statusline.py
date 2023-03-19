@@ -25,7 +25,11 @@ def get_ip():
 
 # thanks to https://stackoverflow.com/a/6556951/7465444
 def get_default_interface():
-    """Read the default gateway directly from /proc."""
+    """Read the default gateway directly from /proc.
+
+    Returns:
+        (str or None)
+    """
     with open("/proc/net/route") as fh:
         for line in fh:
             fields = line.strip().split()
@@ -132,13 +136,6 @@ class Timer:
 
 
 
-# global json dict to emit to i3bar
-data = {
-    'address': '', 'mins_used': '', 'rate_down': '', 'rate_up': '', 'datetime': '',
-    'batt_color': '', 'batt_level': '', 'cpu_temp': ''
-}
-interface = get_default_interface()
-
 # ----- Run on a 1s interval -----
 def every_1s():
     global data, interface
@@ -175,15 +172,14 @@ def every_30s():
             data['batt_color'] = '#ff00cc'
         elif b_state == 'discharging':
             data['batt_level'] = b_time
-            match b_percent:
-                case b_percent if b_percent in range(75, 101):
-                    data['batt_color'] = '#b6ff00'
-                case b_percent if b_percent in range(50, 75):
-                    data['batt_color'] = '#d1d100'
-                case b_percent if b_percent in range(25, 50):
-                    data['batt_color'] = '#e89300'
-                case _:
-                    data['batt_color'] = '#f23400'
+            if b_percent in range(75, 101):
+                data['batt_color'] = '#b6ff00'
+            elif b_percent in range(50, 75):
+                data['batt_color'] = '#d1d100'
+            elif b_percent in range(25, 50):
+                data['batt_color'] = '#e89300'
+            else:
+                data['batt_color'] = '#f23400'
         elif b_state == 'full':
             data['batt_level'] = '100%'
             data['batt_color'] = '#b6ff00'
@@ -195,7 +191,9 @@ def every_30s():
 
 # ----- Run on a 300s interval -----
 def every_300s():
+    global interface
     while True:
+        interface = get_default_interface()
         yield
 
 def emit_data():
