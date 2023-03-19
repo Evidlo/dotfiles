@@ -24,13 +24,11 @@ URxvt.font:                 -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-1,xft:DejaVu
 URxvt.boldFont:             -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
 
 !!! Font Size Shortcuts !!!
-URxvt.keysym.C-Up:     font-size:increase
-URxvt.keysym.C-Down:   font-size:decrease
-URxvt.keysym.C-S-Up:   font-size:incglobal
-URxvt.keysym.C-S-Down: font-size:decglobal
-URxvt.keysym.C-equal:  font-size:reset
-URxvt.keysym.C-slash:  font-size:show
-URxvt.font-size.step: 4
+URxvt.keysym.C-plus:     resize-font:bigger
+URxvt.keysym.C-minus:   resize-font:smaller
+URxvt.keysym.C-equal:  resize-font:reset
+URxvt.keysym.C-question:  resize-font:show
+URxvt.resize-font.step: 4
 
 ! Fix font space
 ! URxvt*letterSpace: 4
@@ -44,7 +42,7 @@ URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true
 
 !!! Perl extensions !!!
-URxvt.perl-ext-common:      keyboard-select,font-size,url-select,selection-to-clipboard
+URxvt.perl-ext-common:      keyboard-select,resize-font,url-select,selection-to-clipboard
 URxvt.matcher.button:       2
 
 !!! Cursor !!!
