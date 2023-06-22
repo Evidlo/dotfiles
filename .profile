@@ -61,9 +61,9 @@ then
     export PYTHON_HOST_PROG="$HOME/resources/venv/bin/python"
 fi
 # add homebrew
-if [[ -d $HOME/.linuxbrew ]]
+if [[ -d /home/linuxbrew/.linuxbrew ]]
 then
-    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 # add ruby
 if [[ -d $HOME/.gem/ruby/2.7.0/bin ]]
@@ -109,7 +109,7 @@ export PATH
 # -------- Aliases --------
 alias ls="ls --color=auto"
 alias e="emacsclient -t"
-alias emacs="emacsclient -c"
+#alias emacs="emacsclient -c"
 alias bat="batcat"
 function rootname(){ echo "${1%.*}"; }
 
