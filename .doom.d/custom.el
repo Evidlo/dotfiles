@@ -6,7 +6,7 @@
  '(ansi-color-names-vector
    ["#1c1e1f" "#e74c3c" "#b6e63e" "#e2c770" "#268bd2" "#fb2874" "#66d9ef" "#d6d6d4"])
  '(custom-safe-themes
-   '("bff1f1a27039280f6c2c99bc8e97beec7f222c64312ebc5fecbecc003371a70c" "e19ac4ef0f028f503b1ccafa7c337021834ce0d1a2bca03fcebc1ef635776bea" "d74c5485d42ca4b7f3092e50db687600d0e16006d8fa335c69cf4f379dbd0eee" "be9645aaa8c11f76a10bcf36aaf83f54f4587ced1b9b679b55639c87404e2499" default))
+   '("8d8207a39e18e2cc95ebddf62f841442d36fcba01a2a9451773d4ed30b632443" "251ed7ecd97af314cd77b07359a09da12dcd97be35e3ab761d4a92d8d8cf9a71" "bff1f1a27039280f6c2c99bc8e97beec7f222c64312ebc5fecbecc003371a70c" "e19ac4ef0f028f503b1ccafa7c337021834ce0d1a2bca03fcebc1ef635776bea" "d74c5485d42ca4b7f3092e50db687600d0e16006d8fa335c69cf4f379dbd0eee" "be9645aaa8c11f76a10bcf36aaf83f54f4587ced1b9b679b55639c87404e2499" default))
  '(exwm-floating-border-color "#3c3d38")
  '(fci-rule-color "#555556")
  '(highlight-tail-colors ((("#333a23") . 0) (("#2d3936") . 20)))

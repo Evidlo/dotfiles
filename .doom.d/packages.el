@@ -9,6 +9,9 @@
 (package! go-mode)
 (package! web-mode)
 (package! lua-mode)
+(package! texfrag)
+(package! org-fragtog)
+(package! jenkinsfile-mode)
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
