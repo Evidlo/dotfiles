@@ -6,14 +6,15 @@ c = get_config()
 c.TerminalIPythonApp.display_banner = True
 c.InteractiveShellApp.log_level = 20
 c.InteractiveShellApp.exec_lines = [
-    # import numpy and limit displayed precision
-    'import numpy as np',
-    'np.set_printoptions(precision=3, suppress=True)',
-    'import ipdb',
-    'from matplotlib import pyplot as plt',
-    '%load_ext autoreload',
-    '%autoreload 2',
-    '%load_ext ipython_cells',
+     # import numpy and limit displayed precision
+     'import numpy as np',
+     'np.set_printoptions(precision=3, suppress=True)',
+     'import ipdb',
+     'from matplotlib import pyplot as plt',
+     '%load_ext autoreload',
+     '%autoreload 2',
+     '%load_ext ipython_cells',
+     'beep = lambda: print("\x07")'
 ]
 # '%matplotlib',
 
@@ -43,3 +44,4 @@ c.TerminalInteractiveShell.history_load_length = 20000
 #     c.InteractiveShell.editor = editor
 
 # c.TerminalInteractiveShell.highlighting_style = 'monokai'
+
