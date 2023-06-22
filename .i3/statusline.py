@@ -2,6 +2,7 @@
 # Evan Widloski - 2023-01-17
 # Python version of an earlier bash script
 import time
+import sys
 from datetime import datetime
 import socket
 from operator import attrgetter
@@ -88,20 +89,40 @@ def get_batt():
         percent (int or None): battery charge level
         time (str or None): battery charge/discharge time remaining
     """
-    result = subprocess.check_output('acpi').decode('utf8').splitlines()[0]
-    percent_match = re.search('[0-9]{2}', result)
+    # parse percentage/time out of acpi output
+    acpi_output = subprocess.check_output('acpi').decode('utf8')
+    batt_line = acpi_output.splitlines()[0] if acpi_output else ''
+    percent_match = re.search('[0-9]{2}', batt_line)
     percent = None if percent_match is None else int(percent_match.group())
-    time_match = re.search('[0-9]{2}:[0-9]{2}:[0-9]{2}', result)
+    time_match = re.search('[0-9]{2}:[0-9]{2}:[0-9]{2}', batt_line)
     time = None if time_match is None else time_match.group()
 
-    if 'Discharging' in result and percent is not None and time is not None:
+    if 'Discharging' in batt_line and percent is not None and time is not None:
         return 'discharging', percent, time
-    elif 'Charging' in result and percent is not None and time is not None:
+    elif 'Charging' in batt_line and percent is not None and time is not None:
         return 'charging', percent, time
-    elif 'Full' in result or 'Not charging' in result:
+    elif 'Full' in batt_line or 'Not charging' in batt_line:
         return 'full', None, None
     else:
         return 'unknown', None, None
+
+def get_music():
+    """Read track/artist from music players
+
+    Returns:
+        title (str or None): name of track playing or None
+        artist (str or None): name of artist of track playing or None
+    """
+    try:
+        title = subprocess.check_output(
+            'playerctl metadata title', shell=True
+        ).decode('utf8').rstrip()
+        artist = subprocess.check_output(
+            'playerctl metadata artist', shell=True
+        ).decode('utf8').rstrip()
+        return (title, artist)
+    except subprocess.CalledProcessError:
+        return (None, None)
 
 class Timer:
     def __init__(self, callback, period):
@@ -156,6 +177,8 @@ def every_1s():
         temp = next(temp_generator)
         data['cpu_temp'] = f'{temp:.0f} °C'
 
+        data['music_title'], data['music_artist'] = get_music()
+
         emit_data()
         yield
 
@@ -197,7 +220,11 @@ def every_300s():
         yield
 
 def emit_data():
-    j = [
+    j = []
+    if data['music_title'] is not None:
+        music_str = f"{data['music_title']} - {data['music_artist']}"
+        j += [{'color': '#ffffff', 'full_text': music_str}]
+    j += [
         {'color': '#ffff00', 'full_text': data['address']},
         {'color': '#ffff00', 'full_text': data['mins_used']},
         {'color': '#4284D3', 'full_text': data['rate_down']},
@@ -225,12 +252,13 @@ if __name__ == '__main__':
             next_timer = min(timers, key=attrgetter('call_time'))
             next_timer.sleep_and_run()
         except Exception as e:
-            with open('/tmp/test.log', 'w') as f:
+            with open('/tmp/statusline.log', 'w') as f:
                 import traceback
                 traceback.print_exc(file=f)
                 from datetime import datetime
                 f.write(f'Error at time {datetime.now()}')
                 f.write('\n')
                 f.write(str(e))
+            sys.exit()
         except KeyboardInterrupt:
             pass
