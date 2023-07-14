@@ -64,10 +64,10 @@ do
         acpi_status=$(acpi)
         if [[ $acpi_status == *"Charging"* || $acpi_status == *"Full"* ]]
         then
-            battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
+            #battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
             battery_color="#FF00CC"
         else
-            battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
+            #battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
             battery_charge=$(awk '{gsub(/%,/,"");print $4}' <<< $acpi_status)
             if (( $battery_charge >= 75 ))
             then
@@ -100,7 +100,8 @@ do
         timer300=0
         
         ### How many minutes I've used the computer today
-        mins_used=$(minutes_today.py ~/logs/usage.log)
+        #mins_used=$(minutes_today.py ~/logs/usage.log)
+
     fi
 
 

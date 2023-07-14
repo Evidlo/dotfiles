@@ -45,6 +45,10 @@ then
     export GOPATH
     export GOBIN
 fi
+if [[ -d /usr/local/go ]]
+then
+    PATH=$PATH:/usr/local/go/bin
+fi
 # if [[ -d $HOME/.pyenv ]]
 # then
 #     PATH=$PATH:$HOME/.pyenv/bin
@@ -115,3 +119,7 @@ function rootname(){ echo "${1%.*}"; }
 
 #Start and EXit - function to start a command in the background and close terminal (useful for opening pdfs)
 sex(){ ("$@" <>/dev/null >&0 2>&0 &) ; exit ;}
+alias l="exa -l --git --group-directories-first --group"
+alias la="exa -al --git --group-directories-first --group"
+alias ll="exa -l --git --group-directories-first -T --level=2"
+. "$HOME/.cargo/env"

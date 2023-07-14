@@ -120,7 +120,7 @@ for_window [class="^.*Matplotlib.*"] border normal
 # ----- Status Bar -----
 bar {
     position top
-    font pango:$font 12
+    font pango:$font 14
     # status_command ~/.i3/statusline_evidlo
     status_command ~/.i3/statusline.py
     # status_command ~/.i3/testbar
@@ -195,9 +195,10 @@ bindsym $mod+y exec sh -c "/home/evan/resources/venv3/bin/illinikey 2>&1 >> /tmp
 
 
 set $test exec echo hello
-bindsym $mod+g exec echo $get_primary >> /tmp/dump
 
+# bindsym $mod+g exec echo $get_primary >> /tmp/dump
 # bindsym $mod+g exec "/usr/bin/python3 -c \\"import sys; open('/tmp/log', 'a').write(str(sys.stdin.isatty()) + '\n')\\""
+bindsym $mod+g exec "echo $DISPLAY >> /tmp/log"
 # bindsym $mod+g exec "/usr/bin/python3 -c \\"import subprocess; open('/tmp/log', 'a').write(str(subprocess.check_output('tty')) + '\n')\\""
 
 # ----- Startup -----

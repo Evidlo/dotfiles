@@ -13,8 +13,8 @@ c.content.blocking.whitelist = ['www.rapidvideo.com']
 c.content.geolocation = False
 c.content.notifications.enabled = False
 c.input.insert_mode.leave_on_load = False
-c.colors.tabs.selected.even.bg = 'orange'
-c.colors.tabs.selected.odd.bg = 'orange'
+# c.colors.tabs.selected.even.bg = 'orange'
+# c.colors.tabs.selected.odd.bg = 'orange'
 
 config.bind('<Ctrl-H>', 'rl-unix-filename-rubout', mode='command')
 config.bind(';m', 'hint links spawn -d mpv {hint-url}')

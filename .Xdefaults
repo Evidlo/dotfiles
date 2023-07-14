@@ -20,8 +20,8 @@ URxvt.lineSpace:            0
 ! Note: certain characters may not render correctly if the font is too small
 ! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
-URxvt.font:                 -*-terminus-medium-r-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
-URxvt.boldFont:             -*-terminus-bold-r-*-*-16-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
+URxvt.font:                 -*-terminus-medium-r-*-*-18-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
+URxvt.boldFont:             -*-terminus-bold-r-*-*-18-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
 
 !!! Font Size Shortcuts !!!
 URxvt.keysym.C-plus:     resize-font:bigger
@@ -42,7 +42,7 @@ URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true
 
 !!! Perl extensions !!!
-URxvt.perl-ext-common:      keyboard-select,resize-font,url-select,selection-to-clipboard
+URxvt.perl-ext-common:      default,keyboard-select,resize-font,url-select,selection-to-clipboard
 URxvt.matcher.button:       2
 
 !!! Cursor !!!
