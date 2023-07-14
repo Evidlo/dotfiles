@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3
 # Evan Widloski - 2023-01-17
 # Python version of an earlier bash script
 import time
@@ -56,7 +56,7 @@ def get_network_rate(interface):
     up_last = 0
     while True:
         for line in open('/proc/net/dev', 'r').read().splitlines():
-            if interface in line:
+            if interface is not None and interface in line:
                 break
         else:
             raise ValueError("Could not find interface in /proc/net/dev")
@@ -91,17 +91,18 @@ def get_batt():
     """
     # parse percentage/time out of acpi output
     acpi_output = subprocess.check_output('acpi').decode('utf8')
-    batt_line = acpi_output.splitlines()[0] if acpi_output else ''
-    percent_match = re.search('[0-9]{2}', batt_line)
-    percent = None if percent_match is None else int(percent_match.group())
-    time_match = re.search('[0-9]{2}:[0-9]{2}:[0-9]{2}', batt_line)
-    time = None if time_match is None else time_match.group()
+    for batt_line in acpi_output.splitlines():
+        percent_match = re.search('[0-9]{2}', batt_line)
+        percent = None if percent_match is None else int(percent_match.group())
+        time_match = re.search('[0-9]{2}:[0-9]{2}:[0-9]{2}', batt_line)
+        time = None if time_match is None else time_match.group()
 
-    if 'Discharging' in batt_line and percent is not None and time is not None:
-        return 'discharging', percent, time
-    elif 'Charging' in batt_line and percent is not None and time is not None:
-        return 'charging', percent, time
-    elif 'Full' in batt_line or 'Not charging' in batt_line:
+        if 'Discharging' in batt_line and percent is not None and time is not None:
+            return 'discharging', percent, time
+        elif 'Charging' in batt_line and percent is not None and time is not None:
+            return 'charging', percent, time
+
+    if 'Full' in batt_line or 'Not charging' in batt_line:
         return 'full', None, None
     else:
         return 'unknown', None, None
@@ -144,7 +145,8 @@ class Timer:
     def sleep_and_run(self):
         """Sleep until callback needs to be run, then execute it"""
         sleep_start = time.time()
-        if self.time_left > 0:
+        time_left = self.time_left
+        if time_left > 0:
             time.sleep(self.time_left)
         self.reset()
         next(self.callback)

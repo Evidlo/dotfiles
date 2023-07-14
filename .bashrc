@@ -67,7 +67,7 @@ shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 
 # backup history/warn about deleted history
-if (( $(wc -l < ~/.bash_history) < 5000 ))
+if (( $(wc -l < ~/.bash_history) < 50 ))
 then
     echo "#######################"
     echo ".bash_history was cleared"
@@ -77,3 +77,8 @@ else
 fi
 
 source ~/.profile
+
+alias l="exa -l --git --group-directories-first --group"
+alias la="exa -al --git --group-directories-first --group"
+alias ll="exa -l --git --group-directories-first -T --level=2"
+. "$HOME/.cargo/env"
