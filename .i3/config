@@ -143,8 +143,8 @@ bar {
 
 set $primary VGA-1
 set $secondary LVDS-1
-set $primary LVDS-1
-set $secondary VGA-1
+# set $primary LVDS-1
+# set $secondary VGA-1
 
 workspace 1 output $primary
 workspace 2 output $primary

@@ -2,3 +2,4 @@
 .passwords_unglobbed
 .config/qutebrowser/*
 **/*.key
+.ssh/*
