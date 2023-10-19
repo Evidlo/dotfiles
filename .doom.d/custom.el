@@ -3,43 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#1c1e1f" "#e74c3c" "#b6e63e" "#e2c770" "#268bd2" "#fb2874" "#66d9ef" "#d6d6d4"])
  '(custom-safe-themes
-   '("8d8207a39e18e2cc95ebddf62f841442d36fcba01a2a9451773d4ed30b632443" "251ed7ecd97af314cd77b07359a09da12dcd97be35e3ab761d4a92d8d8cf9a71" "bff1f1a27039280f6c2c99bc8e97beec7f222c64312ebc5fecbecc003371a70c" "e19ac4ef0f028f503b1ccafa7c337021834ce0d1a2bca03fcebc1ef635776bea" "d74c5485d42ca4b7f3092e50db687600d0e16006d8fa335c69cf4f379dbd0eee" "be9645aaa8c11f76a10bcf36aaf83f54f4587ced1b9b679b55639c87404e2499" default))
- '(exwm-floating-border-color "#3c3d38")
- '(fci-rule-color "#555556")
- '(highlight-tail-colors ((("#333a23") . 0) (("#2d3936") . 20)))
- '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#fd971f"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#b6e63e"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#525254"))
- '(objed-cursor-color "#e74c3c")
- '(package-selected-packages '(crdt))
- '(pdf-view-midnight-colors (cons "#d6d6d4" "#1c1e1f"))
- '(rustic-ansi-faces
-   ["#1c1e1f" "#e74c3c" "#b6e63e" "#e2c770" "#268bd2" "#fb2874" "#66d9ef" "#d6d6d4"])
- '(vc-annotate-background "#1c1e1f")
- '(vc-annotate-color-map
-   (list
-    (cons 20 "#b6e63e")
-    (cons 40 "#c4db4e")
-    (cons 60 "#d3d15f")
-    (cons 80 "#e2c770")
-    (cons 100 "#ebb755")
-    (cons 120 "#f3a73a")
-    (cons 140 "#fd971f")
-    (cons 160 "#fc723b")
-    (cons 180 "#fb4d57")
-    (cons 200 "#fb2874")
-    (cons 220 "#f43461")
-    (cons 240 "#ed404e")
-    (cons 260 "#e74c3c")
-    (cons 280 "#c14d41")
-    (cons 300 "#9c4f48")
-    (cons 320 "#77504e")
-    (cons 340 "#555556")
-    (cons 360 "#555556")))
- '(vc-annotate-very-old-color nil))
+   '("bff1f1a27039280f6c2c99bc8e97beec7f222c64312ebc5fecbecc003371a70c" default))
+ '(warning-suppress-types '((auto-save) (defvaralias))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

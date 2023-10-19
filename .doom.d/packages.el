@@ -12,7 +12,8 @@
 (package! texfrag)
 (package! org-fragtog)
 (package! jenkinsfile-mode)
-
+(package! typst-mode
+  :recipe (:host github :repo "Ziqi-Yang/typst-mode.el"))
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)

@@ -9,7 +9,10 @@
 (setq user-full-name "John Doe"
       user-mail-address "john@doe.com")
 
+(setq recentf-keep '(file-remote-p))
+
 (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72))
+(setq mode-require-final-newline nil)
 
 (defun copy-to-clipboard ()
   "Copies selection to x-clipboard."
@@ -82,4 +85,4 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(add-hook 'markdown-mode)
+(require 'typst-mode)
