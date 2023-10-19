@@ -10,7 +10,7 @@ URxvt.geometry:             90x30
 ! URxvt.shading:              20
 ! URxvt.fading:               10
 URxvt.urgentOnBell:         true
-!URxvt.visualBell:           true
+URxvt.visualBell:           false
 URxvt.loginShell:           true
 URxvt.saveLines:            10000
 URxvt.internalBorder:       5

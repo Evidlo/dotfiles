@@ -62,11 +62,12 @@ def get_network_rate(interface):
             raise ValueError("Could not find interface in /proc/net/dev")
         params = line.split()
         assert len(params) == 17, "Error parsing /proc/net/dev"
-        down_now, up_now = int(params[2]), int(params[10])
+        down_now, up_now = int(params[1]), int(params[9])
         elapsed_time = time.time() - time_last
+        time_last = time.time()
         down, up = down_now - down_last, up_now - up_last
         down_last, up_last = down_now, up_now
-        yield down / elapsed_time, up / elapsed_time
+        yield down / 1000 / elapsed_time, up / 1000 / elapsed_time
 
 def get_cpu_temp():
     """Read CPU temp from disk
@@ -147,7 +148,7 @@ class Timer:
         sleep_start = time.time()
         time_left = self.time_left
         if time_left > 0:
-            time.sleep(self.time_left)
+            time.sleep(time_left)
         self.reset()
         next(self.callback)
 
