@@ -61,15 +61,14 @@ do
         fi
 
         ### Battery stats
-        acpi_status=$(acpi -b | head -n 1)
+        acpi_status=$(acpi)
         if [[ $acpi_status == *"Charging"* || $acpi_status == *"Full"* ]]
         then
-            #battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
+            battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
             battery_color="#FF00CC"
         else
-            #battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
+            battery_time=$(cut -d ' ' -f 5 <<< $acpi_status)
             battery_charge=$(awk '{gsub(/%,/,"");print $4}' <<< $acpi_status)
-            echo "$battery_charge"
             if (( $battery_charge >= 75 ))
             then
                 battery_color="#B7FF00"
@@ -101,8 +100,7 @@ do
         timer300=0
         
         ### How many minutes I've used the computer today
-        #mins_used=$(minutes_today.py ~/logs/usage.log)
-
+        mins_used=$(minutes_today.py ~/logs/usage.log)
     fi
 
 
@@ -124,8 +122,6 @@ do
     printf "{\"name\":\"\",\"color\":\"#ffffff\",\"full_text\":\"%s\"}"    "$cputemp"
 
     printf "]"
-
-    printf "\n"
 
     sleep 1
 

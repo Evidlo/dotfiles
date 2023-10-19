@@ -1,0 +1,6 @@
+include ~/.i3/config
+
+input type:keyboard {
+    xkb_layout us
+    xkb_options caps:super,compose:lwin
+}
