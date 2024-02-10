@@ -16,6 +16,9 @@ c.input.insert_mode.leave_on_load = False
 # c.colors.tabs.selected.even.bg = 'orange'
 # c.colors.tabs.selected.odd.bg = 'orange'
 
+c.hints.mode = 'number'
+c.hints.auto_follow = 'never'
+
 config.bind('<Ctrl-H>', 'rl-unix-filename-rubout', mode='command')
 config.bind(';m', 'hint links spawn -d mpv {hint-url}')
 config.bind(';o', 'hint links spawn -d xdg-open {hint-url}')
