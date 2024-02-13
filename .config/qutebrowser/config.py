@@ -19,6 +19,9 @@ c.hints.mode = 'number'
 c.hints.auto_follow = 'full-match'
 c.zoom.default = '125%'
 
+c.hints.mode = 'number'
+c.hints.auto_follow = 'never'
+
 config.bind('<Ctrl-H>', 'rl-unix-filename-rubout', mode='command')
 config.bind(';m', 'hint links spawn -d mpv {hint-url}')
 config.bind(';o', 'hint links spawn -d xdg-open {hint-url}')
