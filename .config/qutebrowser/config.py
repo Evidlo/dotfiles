@@ -11,13 +11,16 @@ c.completion.use_best_match = True
 c.completion.web_history.max_items = 10000
 c.content.blocking.whitelist = ['www.rapidvideo.com']
 c.content.geolocation = False
-c.content.notifications.enabled = False
+# c.content.notifications.enabled = False
 c.input.insert_mode.leave_on_load = False
 # c.colors.tabs.selected.even.bg = 'orange'
 # c.colors.tabs.selected.odd.bg = 'orange'
+c.hints.mode = 'number'
+c.hints.auto_follow = 'full-match'
+c.zoom.default = '125%'
 
 config.bind('<Ctrl-H>', 'rl-unix-filename-rubout', mode='command')
 config.bind(';m', 'hint links spawn -d mpv {hint-url}')
 config.bind(';o', 'hint links spawn -d xdg-open {hint-url}')
 config.bind(';j', 'config-cycle content.javascript.enabled;;reload -f')
-
+config.bind('<Return>', 'fake-key -g 00')
