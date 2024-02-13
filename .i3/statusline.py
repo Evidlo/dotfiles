@@ -59,7 +59,9 @@ def get_network_rate(interface):
             if interface is not None and interface in line:
                 break
         else:
-            raise ValueError("Could not find interface in /proc/net/dev")
+            interface = get_default_interface()
+            # raise ValueError("Could not find interface in /proc/net/dev")
+            yield 0, 0
         params = line.split()
         assert len(params) == 17, "Error parsing /proc/net/dev"
         down_now, up_now = int(params[1]), int(params[9])
@@ -92,6 +94,7 @@ def get_batt():
     """
     # parse percentage/time out of acpi output
     acpi_output = subprocess.check_output('acpi').decode('utf8')
+    batt_line = ''
     for batt_line in acpi_output.splitlines():
         percent_match = re.search('[0-9]{2}', batt_line)
         percent = None if percent_match is None else int(percent_match.group())
