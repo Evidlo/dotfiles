@@ -42,7 +42,7 @@ URxvt.scrollBar:            false
 URxvt*scrollTtyKeypress:    true
 
 !!! Perl extensions !!!
-URxvt.perl-ext-common:      default,keyboard-select,resize-font,url-select,selection-to-clipboard
+URxvt.perl-ext-common:      default,keyboard-select,resize-font,url-select,selection-to-clipboard,-confirm-paste
 URxvt.matcher.button:       2
 
 !!! Cursor !!!
