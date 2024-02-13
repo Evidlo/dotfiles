@@ -112,7 +112,7 @@ export PATH
 
 # -------- Aliases --------
 alias ls="ls --color=auto"
-alias e="emacsclient -t"
+alias e="emacsclient -tc"
 #alias emacs="emacsclient -c"
 alias bat="batcat"
 function rootname(){ echo "${1%.*}"; }
