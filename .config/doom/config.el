@@ -10,7 +10,11 @@
       user-mail-address "john@doe.com")
 
 ;; (setq recentf-keep '(file-remote-p))
-(setq recentf-keep '(remote-file-p))
+(setq recentf-keep '(file-remote-p))
+(run-at-time (current-time) 300 'recentf-save-list)
+
+;; kill eldoc forever
+;;(global-eldoc-mode -1)
 
 (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72))
 (setq mode-require-final-newline nil)
@@ -85,5 +89,3 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
-(require 'typst-mode)
