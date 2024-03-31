@@ -7,3 +7,6 @@ https://cloud.disroot.org/apps/calendar/ Calendar - Disroot Cloud
 http://spanishlistening.org/content/280-william-mexico-cook.html Spanish Listening #280 ¿Qué puedes cocinar bien?
 https://www.paypal.com/checkoutnow?locale.x=en_US&fundingSource=paypal&sessionID=c2b6361f31_mtu6nte6mdu&buttonSessionID=1779a3258f_mtu6nte6mdc&env=production&fundingOffered=paypal&logLevel=warn&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWxvYmplY3RzLmNvbS9hcGkvY2hlY2tvdXQuanMifQ%3D%3D&uid=85cb27f483&version=4&token=EC-1V689537JW623550A&xcomponent=1 Log in to your PayPal account
 https://illinois.zoom.us/j/2247816675?pwd=eVY0dzhZRHgzeFh4YXBVUXlrb1hTdz09#success Launch Meeting - Zoom
+https://bugs.chromium.org/p/webrtc/issues/detail?id=2507#c3 2507 - SDP parsing: non-numeric ssrc in a=ssrc lines should fail - webrtc
+https://www.reddit.com/r/WebRTC/comments/wd6q6n/maybe_a_stupid_question_but_why_do_we_need_twoway/ Maybe a stupid question, but: why do we need two-way signalling? : WebRTC
+https://groups.google.com/g/discuss-webrtc/c/_VFJ0U6W6Wk One-way data channel -- is this possible?
