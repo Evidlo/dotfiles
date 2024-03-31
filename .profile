@@ -78,6 +78,7 @@ fi
 if [[ -d $HOME/.cargo/bin ]]
 then
     PATH=$PATH:$HOME/.cargo/bin
+    source $HOME/.cargo/env
 fi
 # add bpkg bin to path if it exists
 if [[ -d $HOME/deps/bin ]]
@@ -122,4 +123,3 @@ sex(){ ("$@" <>/dev/null >&0 2>&0 &) ; exit ;}
 alias l="exa -l --git --group-directories-first --group"
 alias la="exa -al --git --group-directories-first --group"
 alias ll="exa -l --git --group-directories-first -T --level=2"
-. "$HOME/.cargo/env"
