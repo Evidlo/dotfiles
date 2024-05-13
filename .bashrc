@@ -67,11 +67,16 @@ shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 
 # backup history/warn about deleted history
-if (( $(wc -l < ~/.bash_history) < 50 ))
+if (( $(wc -l < ~/.bash_history) < 1000 ))
 then
     echo "#######################"
     echo ".bash_history was cleared"
+    echo ""
+    echo "WARNING!"
+    echo ""
     echo "#######################"
+    # make a backup of the history backup, and never overwrite
+    cp -n ~/.bash_history.back ~/.bash_history.archive
 else
     cp ~/.bash_history ~/.bash_history.back
 fi

@@ -160,6 +160,9 @@ for_window [instance="floating"] floating enable
 bindsym $mod+apostrophe exec urxvt || darktile || urxvt256c || urxvt-256color || urxvt || xterm
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
+# octave popup from calculator button
+bindsym XF86Calculator exec --no-startup-id "urxvt -e octave-cli"
+#for_window [window_role=octave_calc] floating enable
 # music player shortcuts
 bindsym XF86AudioNext exec "playerctl next"
 bindsym XF86AudioPrev exec "playerctl previous"
@@ -185,6 +188,7 @@ bindsym $mod+c exec env > /tmp/dump
 # bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
 bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type passhole --prog "rofi -dmenu" --xdotool
 bindsym $mod+Shift+p exec /home/evan/resources/venv3/bin/ph type passhole --tabbed --prog "rofi -dmenu" --xdotool
+bindsym $mod+$mod_b+p exec /home/evan/resources/venv3/bin/ph type passhole --totp --prog "rofi -dmenu" --xdotool
 # bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type --prog
 bindsym $mod+x exec sh -c "xdotool type --delay 15 $(/home/evan/resources/venv3/bin/illinikey)"
 # bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer

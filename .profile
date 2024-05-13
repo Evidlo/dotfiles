@@ -60,6 +60,10 @@ then
     source $HOME/resources/venv3/bin/activate
     export PYTHON3_HOST_PROG="$HOME/resources/venv3/bin/python"
 fi
+if [[ -d $HOME/miniconda3 ]]
+then
+    source $HOME/miniconda/bin/activate
+fi
 if [[ -d $HOME/resources/venv ]]
 then
     export PYTHON_HOST_PROG="$HOME/resources/venv/bin/python"
