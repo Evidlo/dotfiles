@@ -10,7 +10,7 @@ URxvt.geometry:             90x30
 ! URxvt.shading:              20
 ! URxvt.fading:               10
 URxvt.urgentOnBell:         true
-URxvt.visualBell:           false
+URxvt.visualBell:           true
 URxvt.loginShell:           true
 URxvt.saveLines:            10000
 URxvt.internalBorder:       5
@@ -69,3 +69,5 @@ URxvt.url-select.autocopy:  true
 *.background: #000000
 *.foreground:   #eeeeee
 *.cursorColor:  #d1d1d1
+
+xterm*faceSize: 14
