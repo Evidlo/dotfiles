@@ -67,7 +67,7 @@ shopt -s histappend
 export HISTCONTROL=ignoredups:erasedups
 
 # backup history/warn about deleted history
-if (( $(wc -l < ~/.bash_history) < 1000 ))
+if (( $(wc -l < ~/.bash_history) < 10000 ))
 then
     echo "#######################"
     echo ".bash_history was cleared"
@@ -76,7 +76,7 @@ then
     echo ""
     echo "#######################"
     # make a backup of the history backup, and never overwrite
-    cp -n ~/.bash_history.back ~/.bash_history.archive
+    cp -n ~/.bash_history.back ~/.bash_history.archive.$(date +%s)
 else
     cp ~/.bash_history ~/.bash_history.back
 fi
@@ -86,4 +86,6 @@ source ~/.profile
 alias l="exa -l --git --group-directories-first --group"
 alias la="exa -al --git --group-directories-first --group"
 alias ll="exa -l --git --group-directories-first -T --level=2"
-. "$HOME/.cargo/env"
+
+# >>> conda initialize >>>
+# <<< conda initialize <<<
