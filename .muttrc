@@ -39,6 +39,7 @@ bind index L display-message
 bind browser L select-entry
 # bind pager H exit
 macro pager,attach H "<exit><sync-mailbox>"
+macro pager q "<exit><sync-mailbox>"
 bind attach,browser,index,pager g noop
 bind pager j next-line
 bind pager k previous-line
@@ -52,10 +53,8 @@ bind index T imap-fetch-mail
 bind index,pager m sidebar-toggle-visible
 bind index o modify-labels
 # vimlike page up/down
-bind index \Cu half-up
-bind pager \Cu half-up
-bind index \Cd half-down
-bind pager \Cd half-down
+bind index,pager \Cu half-up
+bind index,pager \Cd half-down
 # next/prev mailbox
 macro index > "<sidebar-next><sidebar-open>"
 macro index < "<sidebar-prev><sidebar-open>"
@@ -76,6 +75,7 @@ set allow_ansi = yes
 set sort = 'threads'
 set sort_aux = 'reverse-last-date-received'
 set index_format = '%4C  %10d  %-15.15L  (%?l?%4l&%4c?)  %s'
+set display_filter="grep -v '\\\[-- ' | sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %a, %d %b %Y %H:%M:%S %z' -d '\\1'/e\""
 set date_format = '%Y-%m-%d'
 set auto_tag = yes
 set mime_forward = yes
