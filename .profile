@@ -117,8 +117,9 @@ export PATH
 
 # -------- Aliases --------
 alias ls="ls --color=auto"
-alias e="emacsclient -tc"
+# alias e="emacsclient -tc"
 #alias emacs="emacsclient -c"
+# An emacs 'alias' with the ability to read from stdin
 alias bat="batcat"
 function rootname(){ echo "${1%.*}"; }
 
