@@ -220,9 +220,10 @@ def every_30s():
 
 # ----- Run on a 300s interval -----
 def every_300s():
-    global interface
+    global interface, data
     while True:
         interface = get_default_interface()
+        data['claude'] = subprocess.check_output('claude_usage.sh').decode('utf8')
         yield
 
 def emit_data():
@@ -231,6 +232,7 @@ def emit_data():
         music_str = f"{data['music_title']} - {data['music_artist']}"
         j += [{'color': '#ffffff', 'full_text': music_str}]
     j += [
+        {'color': '#c15f3c', 'full_text': data['claude']},
         {'color': '#ffff00', 'full_text': data['address']},
         {'color': '#ffff00', 'full_text': data['mins_used']},
         {'color': '#4284D3', 'full_text': data['rate_down']},
@@ -245,7 +247,7 @@ if __name__ == '__main__':
     # global json dict to emit to i3bar
     data = {
         'address': '', 'mins_used': '', 'rate_down': '', 'rate_up': '', 'datetime': '',
-        'batt_color': '', 'batt_level': '', 'cpu_temp': ''
+        'batt_color': '', 'batt_level': '', 'cpu_temp': '', 'claude': ''
     }
     interface = get_default_interface()
 
