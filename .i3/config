@@ -152,12 +152,14 @@ workspace 4 output $primary
 workspace 5 output $secondary
 # auto-float windows
 for_window [title=".*Shutter.*"] floating enable
+for_window [title=".*FloatMe.*"] floating enable
 for_window [title=".*Figure.*"] floating enable
 for_window [title=".*Enter LaTeX Formula.*"] floating enable
 for_window [title=".*TexText.*"] floating enable
 
 # ----- Program Shortcuts -----
-bindsym $mod+apostrophe exec kitty --single-instance || urxvt || darktile || urxvt256c || urxvt-256color || urxvt || xterm
+bindsym $mod+apostrophe exec "kitty --single-instance || urxvt || darktile || urxvt256c || urxvt-256color || urxvt || xterm"
+bindsym $mod+$mod_b+apostrophe exec "kitty --single-instance --title=FloatMe"
 bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +10%"
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -10%"
 # octave popup from calculator button
