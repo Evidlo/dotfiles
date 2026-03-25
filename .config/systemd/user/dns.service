@@ -1,0 +1,9 @@
+[Unit]
+Description=update dns record
+
+[Service]
+Type=oneshot
+ExecStart=/home/evan/bin/dns
+
+[Install]
+WantedBy=suspend.target

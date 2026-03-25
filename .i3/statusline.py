@@ -120,10 +120,10 @@ def get_music():
     """
     try:
         title = subprocess.check_output(
-            'playerctl metadata title', shell=True
+            'timeout .1 playerctl metadata title', shell=True
         ).decode('utf8').rstrip()
         artist = subprocess.check_output(
-            'playerctl metadata artist', shell=True
+            'timeout .1 playerctl metadata artist', shell=True
         ).decode('utf8').rstrip()
         return (title, artist)
     except subprocess.CalledProcessError:
@@ -232,7 +232,7 @@ def emit_data():
         music_str = f"{data['music_title']} - {data['music_artist']}"
         j += [{'color': '#ffffff', 'full_text': music_str}]
     j += [
-        {'color': '#c15f3c', 'full_text': data['claude']},
+        {'color': '#d77757', 'full_text': data['claude']},
         {'color': '#ffff00', 'full_text': data['address']},
         {'color': '#ffff00', 'full_text': data['mins_used']},
         {'color': '#4284D3', 'full_text': data['rate_down']},

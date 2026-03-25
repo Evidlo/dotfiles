@@ -1,0 +1,13 @@
+[Unit]
+Description=Picklecast screenshare receiver
+
+[Service]
+# enable so python printed messages appear
+Environment="PYTHONUNBUFFERED=1"
+# path to picklecast
+ExecStart=/home/evan/resources/venv3/bin/picklecast
+# restart if program crashes
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

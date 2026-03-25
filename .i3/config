@@ -156,6 +156,7 @@ for_window [title=".*FloatMe.*"] floating enable
 for_window [title=".*Figure.*"] floating enable
 for_window [title=".*Enter LaTeX Formula.*"] floating enable
 for_window [title=".*TexText.*"] floating enable
+for_window [title=".*zoom.*"] floating enable
 
 # ----- Program Shortcuts -----
 bindsym $mod+apostrophe exec "kitty --single-instance || urxvt || darktile || urxvt256c || urxvt-256color || urxvt || xterm"

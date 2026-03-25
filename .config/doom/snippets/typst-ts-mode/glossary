@@ -1,8 +1,6 @@
 # -*- mode: snippet -*-
-# name: column
+# name: glossary
 # key: trigger-key
 # condition: t
 # --
-::: {.column}
-$0
-:::
+#gls("`yas-selected-text`$0")

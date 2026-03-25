@@ -21,6 +21,7 @@ URxvt.lineSpace:            0
 ! Note: the fallback font must also be scaled when changing primary font size
 URxvt.allow_bold:           true
 URxvt.font:                 -*-terminus-medium-r-*-*-18-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
+!URxvt.font:                 xft:Waltograph:size=18
 URxvt.boldFont:             -*-terminus-bold-r-*-*-18-*-*-*-*-*-*-1,xft:DejaVu Sans:pixelsize=12
 
 !!! Font Size Shortcuts !!!

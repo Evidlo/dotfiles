@@ -1,0 +1,8 @@
+#text/html; w3m -T text/html -dump %s
+text/html; iconv -f utf-8 -t utf-8 -c %s | pandoc --from=html --to=plain --wrap=auto --reference-links --columns 120; nametemplate=%s.html; needsterminal; copiousoutput
+#text/html; iconv -f utf-8 -t utf-8 -c %s | pandoc --from=html --to=/tmp/terminal.lua --wrap=auto --reference-links --columns 120; nametemplate=%s.html; needsterminal; copiousoutput
+# text/html; /usr/bin/qutebrowser %s >/dev/null 2>&1; needsterminal
+video/*; mpv %s
+application/pdf; evince %s
+# image/*; pqiv --info-box-placement=B %s
+image/*; feh %s
