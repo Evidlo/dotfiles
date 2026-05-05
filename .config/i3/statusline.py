@@ -224,6 +224,7 @@ def every_300s():
     while True:
         interface = get_default_interface()
         data['claude'] = subprocess.check_output('claude_usage.sh').decode('utf8')
+        data['openrouter'] = subprocess.check_output('secret_openrouter_usage.sh').decode('utf8')
         yield
 
 def emit_data():
@@ -232,6 +233,7 @@ def emit_data():
         music_str = f"{data['music_title']} - {data['music_artist']}"
         j += [{'color': '#ffffff', 'full_text': music_str}]
     j += [
+        {'color': '#6363e9', 'full_text': data['openrouter']},
         {'color': '#d77757', 'full_text': data['claude']},
         {'color': '#ffff00', 'full_text': data['address']},
         {'color': '#ffff00', 'full_text': data['mins_used']},
@@ -247,7 +249,7 @@ if __name__ == '__main__':
     # global json dict to emit to i3bar
     data = {
         'address': '', 'mins_used': '', 'rate_down': '', 'rate_up': '', 'datetime': '',
-        'batt_color': '', 'batt_level': '', 'cpu_temp': '', 'claude': ''
+        'batt_color': '', 'batt_level': '', 'cpu_temp': '', 'claude': '', 'openrouter': '',
     }
     interface = get_default_interface()
 
