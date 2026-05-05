@@ -93,7 +93,7 @@ def get_batt():
         time (str or None): battery charge/discharge time remaining
     """
     # parse percentage/time out of acpi output
-    acpi_output = subprocess.run('acpi', capture_output=True).stdout.decode('utf8')
+    acpi_output = subprocess.run('acpi', shell=True, capture_output=True).stdout.decode('utf8')
     batt_line = ''
     for batt_line in acpi_output.splitlines():
         percent_match = re.search('[0-9]{2}', batt_line)
@@ -218,8 +218,8 @@ def every_300s():
     global interface, data
     while True:
         interface = get_default_interface()
-        data['claude'] = subprocess.run('claude_usage.sh', capture_output=True).stdout.decode('utf8')
-        data['openrouter'] = subprocess.run('secret_openrouter_usage.sh', capture_output=True).stdout.decode('utf8')
+        data['claude'] = subprocess.run('claude_usage.sh', shell=True, capture_output=True).stdout.decode('utf8')
+        data['openrouter'] = subprocess.run('secret_openrouter_usage.sh', shell=True, capture_output=True).stdout.decode('utf8')
         yield
 
 def emit_data():
