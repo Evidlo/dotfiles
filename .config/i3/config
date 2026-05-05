@@ -121,7 +121,7 @@ for_window [class="^.*Matplotlib.*"] border normal
 bar {
     position top
     # status_command ~/.i3/statusline_evidlo
-    status_command ~/.i3/statusline.py
+    status_command ~/.config/i3/statusline.py
     # status_command ~/.i3/testbar
     colors {
         background $black
