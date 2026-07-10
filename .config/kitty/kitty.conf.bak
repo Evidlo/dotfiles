@@ -43,6 +43,6 @@ map shift+enter send_text all \e\r
 
 
 # BEGIN_KITTY_THEME
-# Default
+# Flexoki (Light)
 include current-theme.conf
 # END_KITTY_THEME
