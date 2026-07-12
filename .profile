@@ -37,11 +37,11 @@ then
     PATH=$PATH:$HOME/resources/scripts
 fi
 #go configuration
+GOPATH=$HOME/resources/go
+GOBIN=$HOME/resources/go/bin
 if [[ -d $HOME/resources/go ]]
 then
 
-    GOPATH=$HOME/resources/go
-    GOBIN=$HOME/resources/go/bin
     export GOPATH
     export GOBIN
 fi
