@@ -43,6 +43,13 @@
 ;;   (typst-ts-mode-enable-raw-blocks-highlight t)
 ;;   (typst-ts-mode-highlight-raw-blocks-at-startup t))
 
+;; ----- TRAMP -----
+;; use faster tramp-rpc
+(package! msgpack)
+(package! tramp-rpc :recipe (:host github :repo "ArthurHeymans/emacs-tramp-rpc" :files ("lisp/*.el")))
+
+
+
 ;; ----- Disabled -----
 (package! auto-complete :disable t)
 (package! company :disable t)

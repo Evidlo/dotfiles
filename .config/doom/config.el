@@ -139,3 +139,9 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(use-package! msgpack)
+(use-package! tramp-rpc
+  ;; git checkout install: fetch prebuilt static binaries from GitHub
+  ;; Releases instead of building the Rust server from source
+  :init (setq tramp-rpc-deploy-git-build-policy 'release))
