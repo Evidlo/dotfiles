@@ -6,6 +6,7 @@
 if [ -n "$DISPLAY" ]
 then
     xset r rate 200 30
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 2>/dev/null
 fi
 
 # change cursor to blinking pipe
@@ -83,7 +84,7 @@ fi
 if [ -d "$HOME/.cargo/bin" ]
 then
     PATH=$PATH:$HOME/.cargo/bin
-    . "$HOME/.cargo/env"
+    [ -r "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 fi
 # add bpkg bin to path if it exists
 if [ -d "$HOME/deps/bin" ]
