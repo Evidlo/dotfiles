@@ -197,9 +197,11 @@ bindsym $mod+x exec sh -c "xdotool type --delay 15 $(/home/evan/resources/venv3/
 # bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer
 # bindsym $mod+y exec sh -c "echo hi >> /tmp/err && export DISPLAY=:0 && sleep .5 && xdotool type foobar 2>&1 >> /tmp/err"
 # bindsym $mod+y exec sh -c "xdotool type foobar"
-bindsym $mod+y exec sh -c "/home/evan/resources/venv3/bin/illinikey 2>&1 >> /tmp/err && echo new >> /tmp/err"
+# bindsym $mod+y exec sh -c "/home/evan/resources/venv3/bin/illinikey 2>&1 >> /tmp/err && echo new >> /tmp/err"
 # bindsym $mod+b exec /home/evan/resources/venv3/bin/ph --debug type passhole --prog "rofi -dmenu" --xdotool --otp
 bindsym $mod+c exec sh -c "rofi -dmenu -filter https://copernicus.ece.illinois.edu/ | pqiv -r"
+
+bindsym $mod+y exec sh -c "nichromecast cast -d LG $(xsel -o)"
 
 
 set $test exec echo hello
