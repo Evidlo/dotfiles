@@ -182,8 +182,8 @@ bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 bindsym XF86AudioMicMute exec "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
 bindsym Print exec "maim -s /tmp/out.png"
 bindsym $mod+n exec nautilus
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
+bindsym XF86MonBrightnessDown exec "light -U 2"
+bindsym XF86MonBrightnessUp exec "light -A 2"
 bindsym $mod+m exec PATH=/home/evan/resources/venv3/bin:$PATH mpv "$(xsel -o || wl-paste)" --load-unsafe-playlists 2>&1 >> /tmp/mpv_log
 bindsym $mod+e exec rofimoji -s light -f all
 # bindsym $mod+c exec env > /tmp/dump
