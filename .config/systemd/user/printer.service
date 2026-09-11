@@ -1,0 +1,6 @@
+[Unit]
+Description=Native printing to reMarkable
+Requires=printer.socket
+
+[Service]
+ExecStart=/home/evan/resources/remarkable_printer/printer.x86 -restart -debug -test

@@ -3,3 +3,4 @@
 .config/qutebrowser/*
 **/*.key
 .ssh/*
+.passhole.kdbx

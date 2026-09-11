@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: glossary
+# key: trigger-key
+# condition: t
+# --
+#gls("`yas-selected-text`$0")

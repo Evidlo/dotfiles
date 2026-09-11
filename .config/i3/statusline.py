@@ -93,7 +93,7 @@ def get_batt():
         time (str or None): battery charge/discharge time remaining
     """
     # parse percentage/time out of acpi output
-    acpi_output = subprocess.check_output('acpi').decode('utf8')
+    acpi_output = subprocess.run('acpi', shell=True, capture_output=True).stdout.decode('utf8')
     batt_line = ''
     for batt_line in acpi_output.splitlines():
         percent_match = re.search('[0-9]{2}', batt_line)
@@ -118,16 +118,11 @@ def get_music():
         title (str or None): name of track playing or None
         artist (str or None): name of artist of track playing or None
     """
-    try:
-        title = subprocess.check_output(
-            'playerctl metadata title', shell=True
-        ).decode('utf8').rstrip()
-        artist = subprocess.check_output(
-            'playerctl metadata artist', shell=True
-        ).decode('utf8').rstrip()
-        return (title, artist)
-    except subprocess.CalledProcessError:
+    title_result = subprocess.run('timeout .1 playerctl metadata title', shell=True, capture_output=True)
+    artist_result = subprocess.run('timeout .1 playerctl metadata artist', shell=True, capture_output=True)
+    if title_result.returncode != 0 or artist_result.returncode != 0:
         return (None, None)
+    return (title_result.stdout.decode('utf8').rstrip(), artist_result.stdout.decode('utf8').rstrip())
 
 class Timer:
     def __init__(self, callback, period):
@@ -220,9 +215,11 @@ def every_30s():
 
 # ----- Run on a 300s interval -----
 def every_300s():
-    global interface
+    global interface, data
     while True:
         interface = get_default_interface()
+        data['claude'] = subprocess.run('claude_usage.sh', shell=True, capture_output=True).stdout.decode('utf8')
+        data['openrouter'] = subprocess.run('secret_openrouter_usage.sh', shell=True, capture_output=True).stdout.decode('utf8')
         yield
 
 def emit_data():
@@ -231,6 +228,8 @@ def emit_data():
         music_str = f"{data['music_title']} - {data['music_artist']}"
         j += [{'color': '#ffffff', 'full_text': music_str}]
     j += [
+        {'color': '#6363e9', 'full_text': data['openrouter']},
+        {'color': '#d77757', 'full_text': data['claude']},
         {'color': '#ffff00', 'full_text': data['address']},
         {'color': '#ffff00', 'full_text': data['mins_used']},
         {'color': '#4284D3', 'full_text': data['rate_down']},
@@ -245,7 +244,7 @@ if __name__ == '__main__':
     # global json dict to emit to i3bar
     data = {
         'address': '', 'mins_used': '', 'rate_down': '', 'rate_up': '', 'datetime': '',
-        'batt_color': '', 'batt_level': '', 'cpu_temp': ''
+        'batt_color': '', 'batt_level': '', 'cpu_temp': '', 'claude': '', 'openrouter': '',
     }
     interface = get_default_interface()
 

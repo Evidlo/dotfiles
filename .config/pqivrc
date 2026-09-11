@@ -1,0 +1,7 @@
+[actions]
+toggle_scale_mode(5)
+toggle_info_box()
+
+[keybindings]
+q { goto_file_relative(0); }
+esc { goto_file_relative(0); }

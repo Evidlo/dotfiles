@@ -1,0 +1,11 @@
+[Unit]
+Description=testfoo
+
+[Service]
+Type=oneshot
+EnvironmentFile=/tmp/testfooenv
+ExecStart=/tmp/testfoo_start
+ExecStop=/tmp/testfoo_stop
+
+[Install]
+WantedBy=suspend.target

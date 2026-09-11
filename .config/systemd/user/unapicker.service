@@ -1,0 +1,13 @@
+[Unit]
+Description=File Picker FUSE Mount
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/home/evan/resources/venv3/bin/unapicker daemon --mount-point /tmp/picker --picker 'zenity --file-selection' --picker 'kdialog --getopenfilename /'
+ExecStop=/bin/sh -c 'fusermount -u /tmp/.picker-fuse 2>/dev/null || true'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
