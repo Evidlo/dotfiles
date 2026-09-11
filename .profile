@@ -116,6 +116,15 @@ then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
+# activate default flox environment if present
+if [ -d "$HOME/.local/flox/.flox" ] && command -v flox >/dev/null 2>&1
+then
+    eval "$(flox activate -d "$HOME/.local/flox" 2>/dev/null)"
+    # drop the "flox [flox]" prompt prefix
+    export FLOX_PROMPT_ENVIRONMENTS=""
+    [ -n "${FLOX_SAVE_BASH_PS1:-}" ] && PS1="$FLOX_SAVE_BASH_PS1"
+fi
+
 export PATH
 
 # -------- Aliases --------
