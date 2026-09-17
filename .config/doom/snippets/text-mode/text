@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Latex text
+# key: trigger-key
+# condition: t
+# --
+
+\text{$1}$0

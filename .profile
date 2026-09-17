@@ -16,8 +16,6 @@ fi
 #start emacs daemon if not already running
 export EDITOR="emacsclient -tc"
 export ALTERNATE_EDITOR=""
-# only run tabs when attached to a terminal (fails when sourced by Xsession)
-[ -t 1 ] && tabs -4
 # dont prompt to restart services constantly
 export DEBIAN_FRONTEND=noninteractive
 
