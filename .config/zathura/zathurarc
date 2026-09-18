@@ -1,0 +1,4 @@
+set highlight-color rgba(159,251,0,0.5)
+set highlight-fg    rgba(0,0,0,1)
+set font            "monospace normal 11"
+set selection-clipboard clipboard
