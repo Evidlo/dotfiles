@@ -6,9 +6,11 @@
 # tools that are already installed are skipped.
 #
 # To add software:
-#   - apt package        -> add a line to APT_PACKAGES
-#   - dotfile / config    -> add a line to OVERLAY
-#   - a whole tool        -> add a small install_* function and call it in main()
+#   - apt package         -> add a line to APT_PACKAGES
+#   - dotfile / config     -> commit it to the yadm repo (yadm add/commit/push);
+#                             system files (xorg.conf.d, udev) go in ~/.config and
+#                             are symlinked into /etc by ~/.config/yadm/bootstrap
+#   - a whole tool         -> add a small install_* function and call it in main()
 #
 # Usage:  ./install_debian.sh
 
@@ -36,8 +38,9 @@ GO_PREFIX="/usr/local"        # go lands in $GO_PREFIX/go ; add $GO_PREFIX/go/bi
 
 DOOM_HTTPS="https://github.com/doomemacs/doomemacs"
 
+YADM_SRC="https://github.com/TheLocehiliosan/yadm/raw/master/yadm"
+
 RESOURCES="$HOME/resources"
-DOTFILES_DIR="$RESOURCES/dotfiles"
 GOMUKS_DIR="$RESOURCES/gomuks"
 VENV_DIR="$RESOURCES/venv3"
 EMACS_DIR="$HOME/.config/emacs"    # doom framework clone (private config is ~/.config/doom)
@@ -149,21 +152,6 @@ APT_PACKAGES=(
 )
 
 # ----------------------------------------------------------------------
-# Everything the dotfiles repo tracks is overlaid into $HOME as-is.
-# List only the tracked paths that should NOT go to $HOME (git metadata,
-# repo docs, and xorg.conf.d which is installed to /etc separately).
-# ----------------------------------------------------------------------
-
-OVERLAY_EXCLUDE=(
-  ".git"
-  ".gitignore"
-  ".gitmodules"
-  "xorg.conf.d"
-  "README.md"
-  "install_debian.sh"
-)
-
-# ----------------------------------------------------------------------
 # Helpers
 # ----------------------------------------------------------------------
 
@@ -207,38 +195,26 @@ install_apt_packages() {
   sudo apt-get install -y "${APT_PACKAGES[@]}"
 }
 
-clone_dotfiles() {
-  info "Fetching dotfiles"
-  if [ -d "$DOTFILES_DIR/.git" ]; then
-    git -C "$DOTFILES_DIR" pull --ff-only
+install_dotfiles() {
+  # Dotfiles are managed with yadm (worktree = $HOME). Install yadm as a
+  # standalone script (no sudo), clone read-only over https with an ssh push
+  # url, then run the bootstrap (symlinks xorg.conf.d + udev rules into /etc,
+  # which replaces the old keyboard-conf/overlay steps).
+  info "Installing dotfiles (yadm)"
+  mkdir -p "$HOME/.local/bin"
+  curl -fsSLo "$HOME/.local/bin/yadm" "$YADM_SRC"
+  chmod +x "$HOME/.local/bin/yadm"
+  local yadm="$HOME/.local/bin/yadm"
+  if [ -d "$HOME/.local/share/yadm/repo.git" ]; then
+    "$yadm" pull --ff-only || warn "yadm pull failed (local changes?); skipping"
   else
-    git clone "$DOTFILES_HTTPS" "$DOTFILES_DIR"
+    "$yadm" clone --no-bootstrap "$DOTFILES_HTTPS"
+    "$yadm" remote set-url --push origin "$DOTFILES_SSH"
+    # a fresh box ships skeleton .bashrc/.profile that block the checkout; force it
+    "$yadm" reset --hard HEAD
   fi
-  # Clone read-only over https, but push over ssh.
-  git -C "$DOTFILES_DIR" remote set-url --push origin "$DOTFILES_SSH"
-}
-
-overlay_dotfiles() {
-  info "Overlaying dotfiles into \$HOME"
-  # rsync the whole repo into $HOME, excluding git metadata and the paths
-  # listed in OVERLAY_EXCLUDE. Directories merge; existing files are updated.
-  local excludes=()
-  local e
-  for e in "${OVERLAY_EXCLUDE[@]}"; do
-    excludes+=(--exclude "$e")
-  done
-  rsync -a "${excludes[@]}" "$DOTFILES_DIR/" "$HOME/"
-}
-
-install_keyboard_conf() {
-  # Caps Lock -> Super (Mod4), plus compose keys. Applies to all keyboards.
-  info "Installing X11 keyboard config (caps:super)"
-  local src="$DOTFILES_DIR/xorg.conf.d/00-keyboard.conf"
-  if [ -f "$src" ]; then
-    sudo install -D -m 644 "$src" /etc/X11/xorg.conf.d/00-keyboard.conf
-  else
-    warn "keyboard conf not found in repo: $src"
-  fi
+  # deploy system configs (xorg.conf.d, udev rules) into /etc via sudo symlinks
+  "$yadm" bootstrap || warn "yadm bootstrap failed; run '~/.local/bin/yadm bootstrap' manually"
 }
 
 setup_venv() {
@@ -319,8 +295,8 @@ enable_sshd() {
 }
 
 install_doom() {
-  # Doom Emacs framework. Private config lives in ~/.config/doom (overlaid
-  # from the dotfiles repo), so here we only clone the framework and sync.
+  # Doom Emacs framework. Private config lives in ~/.config/doom (tracked by
+  # yadm), so here we only clone the framework and sync.
   info "Installing Doom Emacs"
   # --recurse-submodules is REQUIRED: current doomemacs keeps its modules in a
   # submodule (sources/doom+), so a plain clone yields a broken, module-less doom.
@@ -380,9 +356,7 @@ main() {
   install_apt_packages
   enable_sshd
   install_go
-  clone_dotfiles
-  overlay_dotfiles
-  install_keyboard_conf
+  install_dotfiles
   link_secrets
   setup_venv
   install_venv_tools
