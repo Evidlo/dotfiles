@@ -55,31 +55,45 @@ PS1='[\[\033[01;38;5;196m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[
 trap 'printf "\e[0m" "$_"' DEBUG
 
 # -------- History --------
-#increase bash history
+# Per-host history synced via Syncthing: each machine appends ONLY its own
+# commands to ~/secrets/history/bash_history.<hostname>; at startup we glob-read
+# every host's file so Ctrl-R / up-arrow search the union across all machines.
+HISTSIZE=10000000
 HISTFILESIZE=10000000
 HISTTIMEFORMAT="%FT%R "
-HISTSIZE=10000000
-# append to .bash_history and reread after each command
-export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-# append to .bash_history instead of overwriting
+HISTCONTROL=ignoredups
 shopt -s histappend
-# dont allow repeated lines
-export HISTCONTROL=ignoredups:erasedups
 
-# backup history/warn about deleted history
-if (( $(wc -l < ~/.bash_history) < 10000 ))
+HISTDIR=~/secrets/history
+if [ -d "$HISTDIR" ]; then
+    HISTFILE="$HISTDIR/bash_history.$(hostname)"
+    # load every host's history into this shell for search...
+    for _hf in "$HISTDIR"/bash_history.*; do
+        [ -r "$_hf" ] && history -r "$_hf"
+    done
+    # ...then advance the append pointer so the reads above are NOT written back
+    # into our own file; only commands typed this session get appended.
+    history -a /dev/null 2>/dev/null
+    unset _hf
+fi
+
+# warn if this host's history file looks cleared, else keep a dated backup
+# (in backups/ so it doesn't match the bash_history.* glob above)
+if (( $(wc -l < "$HISTFILE" 2>/dev/null || echo 0) < 10000 ))
 then
     echo "#######################"
-    echo ".bash_history was cleared"
+    echo "$HISTFILE was cleared"
     echo ""
     echo "WARNING!"
     echo ""
     echo "#######################"
-    # make a backup of the history backup, and never overwrite
-    cp -n ~/.bash_history.back ~/.bash_history.archive.$(date +%s)
 else
-    cp ~/.bash_history ~/.bash_history.back
+    mkdir -p "${HISTFILE%/*}/backups"
+    cp "$HISTFILE" "${HISTFILE%/*}/backups/${HISTFILE##*/}_$(date +%F)"
 fi
+
+# append this session's new commands to our own histfile after each command
+export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 source ~/.profile
 

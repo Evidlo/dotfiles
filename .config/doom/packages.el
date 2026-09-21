@@ -27,6 +27,12 @@
 ;; (package! builtin-package :disable t)
 
 ;; ----- Added -----
+;; git-commit was merged into the magit repo and no longer has a standalone
+;; MELPA recipe; provide one so straight.el can find it.
+(package! git-commit
+  :recipe (:host github :repo "magit/magit"
+           :files ("lisp/git-commit.el" "lisp/git-commit-pkg.el")
+           :nonrecursive t))
 ;; (package! fill-column-indicator)
 (package! typst-ts-mode
   :recipe (:host nil :repo "https://git.sr.ht/~meow_king/typst-ts-mode"

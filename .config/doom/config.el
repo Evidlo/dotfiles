@@ -49,6 +49,7 @@
 (setq sp-python-insert-colon-in-function-definitions nil)
 (setq markdown-fontify-code-blocks-natively t)
 (setq sgml-quick-keys 'close)
+(setq evil-respect-visual-line-mode t)
 
 ;; (run-at-time (current-time) 300 'recentf-save-list)
 (after! recentf
@@ -140,8 +141,19 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; typst-ts-mode needs the typst tree-sitter grammar.  Doom repoints
+;; `user-emacs-directory' at its cache dir, so treesit won't find grammars in
+;; the usual spot; keep them in doom's data dir instead.  Install with
+;; `M-x treesit-install-language-grammar RET typst'.
+(setq treesit-extra-load-path (list (concat doom-data-dir "tree-sitter/")))
+(after! treesit
+  (add-to-list 'treesit-language-source-alist
+               '(typst "https://github.com/Ziqi-Yang/tree-sitter-typst")))
+
 (use-package! msgpack)
 (use-package! tramp-rpc
   ;; git checkout install: fetch prebuilt static binaries from GitHub
   ;; Releases instead of building the Rust server from source
   :init (setq tramp-rpc-deploy-git-build-policy 'release))
+;; make the custom theme in $DOOMDIR/themes/ discoverable (doom no longer auto-adds it)
+(add-to-list (quote custom-theme-load-path) (expand-file-name "themes/" doom-user-dir))

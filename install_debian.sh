@@ -80,6 +80,7 @@ APT_PACKAGES=(
   curl
   aria2
   expect
+  jq               # used by statusline claude_usage.sh
 
   # build / languages
   build-essential
@@ -321,8 +322,10 @@ install_doom() {
   # Doom Emacs framework. Private config lives in ~/.config/doom (overlaid
   # from the dotfiles repo), so here we only clone the framework and sync.
   info "Installing Doom Emacs"
+  # --recurse-submodules is REQUIRED: current doomemacs keeps its modules in a
+  # submodule (sources/doom+), so a plain clone yields a broken, module-less doom.
   if [ ! -d "$EMACS_DIR/.git" ]; then
-    git clone --depth 1 "$DOOM_HTTPS" "$EMACS_DIR"
+    git clone --depth 1 --recurse-submodules --shallow-submodules "$DOOM_HTTPS" "$EMACS_DIR"
   fi
   if [ -x "$EMACS_DIR/bin/doom" ]; then
     "$EMACS_DIR/bin/doom" sync

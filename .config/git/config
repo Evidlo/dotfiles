@@ -1,0 +1,8 @@
+# This is Git's per-user configuration file.
+[evidlo]
+# Please adapt and uncomment the following lines:
+name = Evan Widloski
+email = evan_gh@widloski.com
+[user]
+	name = Evidlo
+	email = evan_gh@widloski.com

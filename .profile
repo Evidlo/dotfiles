@@ -31,6 +31,11 @@ if [ -d "$HOME/.local/bin" ]
 then
     PATH=$HOME/.local/bin:$PATH
 fi
+# add secret bin (synced via secrets/ Syncthing folder)
+if [ -d "$HOME/secrets/bin" ]
+then
+    PATH=$HOME/secrets/bin:$PATH
+fi
 # add scripts folder to path if it exists
 if [ -d "$HOME/resources/scripts" ]
 then

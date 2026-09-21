@@ -140,10 +140,10 @@ bar {
 # set $get_primary "xrandr | awk '/ connected primary/{print $1}'"
 # set $get_secondary "xrandr | awk '/ connected primary/{next}/ connected/{print $1;exit}'"
 
-set $primary VGA-1
-set $secondary LVDS-1
-# set $primary LVDS-1
-# set $secondary VGA-1
+#set $primary VGA-1
+#set $secondary LVDS-1
+set $primary DP2
+set $secondary eDP1
 
 workspace 1 output $primary
 workspace 2 output $primary
@@ -189,9 +189,9 @@ bindsym $mod+e exec rofimoji -s light -f all
 # bindsym $mod+c exec env > /tmp/dump
 # bindsym $mod+p exec ~/resources/venv3/bin/passhole type "dmenu -b"
 # bindsym $mod+Shift+p exec ~/resources/venv3/bin/passhole type --tabbed "dmenu -b"
-bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type passhole --prog "rofi -dmenu" --xdotool
-bindsym $mod+Shift+p exec /home/evan/resources/venv3/bin/ph type passhole --tabbed --prog "rofi -dmenu" --xdotool
-bindsym $mod+$mod_b+p exec /home/evan/resources/venv3/bin/ph type passhole --totp --prog "rofi -dmenu" --xdotool
+bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type passhole --prog "rofi -dmenu" --xdotool </dev/null
+bindsym $mod+Shift+p exec /home/evan/resources/venv3/bin/ph type passhole --tabbed --prog "rofi -dmenu" --xdotool </dev/null
+bindsym $mod+$mod_b+p exec /home/evan/resources/venv3/bin/ph type passhole --totp --prog "rofi -dmenu" --xdotool </dev/null
 # bindsym $mod+p exec /home/evan/resources/venv3/bin/ph type --prog
 bindsym $mod+x exec sh -c "xdotool type --delay 15 $(/home/evan/resources/venv3/bin/illinikey)"
 # bindsym $mod+y exec exec urxvt256c -name floating -e pulsemixer
