@@ -1,0 +1,3 @@
+# Raise trackpoint sensitivity to match cubebox's feel (kernel default 128 -> 200).
+# Applies to RMI4 (ThinkPad i2c) trackpoints on any machine; tune the value to taste.
+ACTION=="add", SUBSYSTEM=="serio", DRIVERS=="rmi4_f03", ATTR{sensitivity}="200"

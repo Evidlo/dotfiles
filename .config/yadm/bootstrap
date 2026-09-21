@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# yadm bootstrap: deploy system configs tracked under ~/.config into /etc via symlinks
+# (so editing the tracked file updates the live system config). Needs sudo.
+set -e
+
+# X11 InputClass configs (keyboard caps:super, etc.) -> /etc/X11/xorg.conf.d/
+if [ -d "$HOME/.config/xorg.conf.d" ]; then
+    sudo mkdir -p /etc/X11/xorg.conf.d
+    for f in "$HOME"/.config/xorg.conf.d/*.conf; do
+        [ -e "$f" ] && sudo ln -sfn "$f" "/etc/X11/xorg.conf.d/$(basename "$f")"
+    done
+fi
+
+# udev rules (e.g. trackpoint sensitivity) -> /etc/udev/rules.d/
+if [ -d "$HOME/.config/udev-rules" ]; then
+    for f in "$HOME"/.config/udev-rules/*.rules; do
+        [ -e "$f" ] && sudo ln -sfn "$f" "/etc/udev/rules.d/$(basename "$f")"
+    done
+    sudo udevadm control --reload 2>/dev/null || true
+fi
