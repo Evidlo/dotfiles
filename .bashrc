@@ -55,30 +55,28 @@ PS1='[\[\033[01;38;5;196m\]\u@\h\[\033[00m\] \[\033[01;34m\]\W\[\033[00m\]]\[\e[
 trap 'printf "\e[0m" "$_"' DEBUG
 
 # -------- History --------
-# Per-host history synced via Syncthing: each machine appends ONLY its own
-# commands to ~/secrets/history/bash_history.<hostname>; at startup we glob-read
-# every host's file so Ctrl-R / up-arrow search the union across all machines.
+
+# shared history directory for all devices
+HISTDIR=~/secrets/history
 HISTSIZE=10000000
 HISTFILESIZE=10000000
 HISTTIMEFORMAT="%FT%R "
-HISTCONTROL=ignoredups
+HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
-HISTDIR=~/secrets/history
 if [ -d "$HISTDIR" ]; then
     HISTFILE="$HISTDIR/bash_history.$(hostname)"
-    # load every host's history into this shell for search...
-    for _hf in "$HISTDIR"/bash_history.*; do
-        [ -r "$_hf" ] && history -r "$_hf"
+    # load history from other devices
+    for hist in "$HISTDIR"/bash_history.*; do
+        [ -r "$hist" ] && history -r "$hist"
     done
-    # ...then advance the append pointer so the reads above are NOT written back
-    # into our own file; only commands typed this session get appended.
+    # advance the append pointer so the reads above are not written back
     history -a /dev/null 2>/dev/null
-    unset _hf
+    unset hist
 fi
 
-# warn if this host's history file looks cleared, else keep a dated backup
-# (in backups/ so it doesn't match the bash_history.* glob above)
+# bash has a bug that can cause history to be deleted!
+# check the length of the history at startup and make a backup
 if (( $(wc -l < "$HISTFILE" 2>/dev/null || echo 0) < 10000 ))
 then
     echo "#######################"
@@ -89,11 +87,13 @@ then
     echo "#######################"
 else
     mkdir -p "${HISTFILE%/*}/backups"
-    cp "$HISTFILE" "${HISTFILE%/*}/backups/${HISTFILE##*/}_$(date +%F)"
+    cp "$HISTFILE" "${HISTFILE%/*}/backups/${HISTFILE##*/}"
 fi
 
 # append this session's new commands to our own histfile after each command
 export PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+# -------- Profile/aliases --------
 
 source ~/.profile
 
