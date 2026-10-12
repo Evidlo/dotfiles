@@ -114,13 +114,17 @@ case $- in
 *i*)
     if [ -d "$HOME/.local/flox/.flox" ] && command -v flox >/dev/null 2>&1
     then
-        eval "$(flox activate -d "$HOME/.local/flox" 2>/dev/null)"
+        #eval "$(flox activate -d "$HOME/.local/flox" 2>/dev/null)"
         # drop the "flox [flox]" prompt prefix
         export FLOX_PROMPT_ENVIRONMENTS=""
         [ -n "${FLOX_SAVE_BASH_PS1:-}" ] && PS1="$FLOX_SAVE_BASH_PS1"
     fi
     ;;
 esac
+if [ -d "$HOME/.pixi" ]
+then
+	export PATH="$HOME/.pixi/bin:$PATH"
+fi
 # if [ -d $HOME/.pyenv ]
 # then
 #     PATH=$PATH:$HOME/.pyenv/bin
@@ -150,10 +154,11 @@ export PATH
 
 # -------- Aliases --------
 alias ls="ls --color=auto"
-# alias e="emacsclient -tc"
+alias e="emacsclient -tc"
 #alias emacs="emacsclient -c"
 # An emacs 'alias' with the ability to read from stdin
 alias bat="batcat"
+alias claude="FORCE_HYPERLINK=1 claude"
 rootname() { echo "${1%.*}"; }
 
 #Start and EXit - function to start a command in the background and close terminal (useful for opening pdfs)
@@ -161,3 +166,8 @@ sex(){ ("$@" <>/dev/null >&0 2>&1 &) ; exit ;}
 alias l="exa -l --git --group-directories-first --group"
 alias la="exa -al --git --group-directories-first --group"
 alias ll="exa -l --git --group-directories-first -T --level=2"
+
+# login to termux on android
+
+alias termux='adb shell -t "su \$(pm list packages -U com.termux | grep -oE \"uid:[0-9]+\" | cut -d: -f2) -c '\''export PATH=/data/data/com.termux/files/usr/bin:\$PATH; export LD_LIBRARY_PATH=/data/data/com.termux/files/usr/lib; HOME=/data/data/com.termux/files/home; cd \$HOME; bash -l'\''"'
+
