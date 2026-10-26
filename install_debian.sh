@@ -86,6 +86,7 @@ APT_PACKAGES=(
   jq               # used by statusline claude_usage.sh
 
   # build / languages
+  adb
   build-essential
   gcc
   make
@@ -102,6 +103,7 @@ APT_PACKAGES=(
   telnet
   nload
   iproute2
+  sshfs
 
   # desktop / wm
   i3
@@ -115,6 +117,7 @@ APT_PACKAGES=(
   autorandr
   arandr
   powertop
+  lxpolkit	   # password prompt
   evince
   zathura          # pdf/document viewer
   zathura-pdf-poppler   # pdf backend for zathura
