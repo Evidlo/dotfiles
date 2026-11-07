@@ -1,1 +1,5 @@
 . "$HOME/.profile"
+
+# Disable touchpad scrolling/tapping for 1s after a keypress (palm rejection while typing).
+# -t: keep pointer motion  -K: ignore modifier combos  -R: use XRecord  -d: daemonize
+syndaemon -i 1 -t -K -R -d
