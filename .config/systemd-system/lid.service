@@ -1,0 +1,18 @@
+[Unit]
+Description=Log lid open/close and grab a webcam still on resume
+Documentation=https://github.com/evidlo/scripts
+# Ordered before sleep.target so ExecStart finishes before the machine
+# actually suspends, and ExecStop runs once sleep.target has gone away again.
+Before=sleep.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=evan
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/evan/.Xauthority
+ExecStart=/home/evan/resources/scripts/lid close
+ExecStop=/home/evan/resources/scripts/lid open
+
+[Install]
+WantedBy=sleep.target

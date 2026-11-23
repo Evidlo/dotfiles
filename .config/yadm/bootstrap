@@ -11,6 +11,19 @@ if [ -d "$HOME/.config/xorg.conf.d" ]; then
     done
 fi
 
+# system units (e.g. lid.service) -> /etc/systemd/system/
+# systemd treats an absolute symlink here the same as `systemctl link`, so the
+# tracked file stays the live unit. Units are enabled by their own [Install].
+if [ -d "$HOME/.config/systemd-system" ]; then
+    for f in "$HOME"/.config/systemd-system/*.service; do
+        [ -e "$f" ] && sudo ln -sfn "$f" "/etc/systemd/system/$(basename "$f")"
+    done
+    sudo systemctl daemon-reload
+    for f in "$HOME"/.config/systemd-system/*.service; do
+        [ -e "$f" ] && sudo systemctl enable "$(basename "$f")"
+    done
+fi
+
 # udev rules (e.g. trackpoint sensitivity) -> /etc/udev/rules.d/
 if [ -d "$HOME/.config/udev-rules" ]; then
     for f in "$HOME"/.config/udev-rules/*.rules; do

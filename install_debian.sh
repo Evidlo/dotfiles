@@ -111,6 +111,7 @@ APT_PACKAGES=(
   pqiv
   feh
   mpv
+  ffmpeg           # webcam still on resume (resources/scripts/lid)
   emacs
   acpi
   xscreensaver

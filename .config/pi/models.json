@@ -1,0 +1,136 @@
+{
+  "providers": {
+    "uiuc": {
+      "baseUrl": "http://127.0.0.1:8765/v1",
+      "api": "openai-completions",
+      "apiKey": "none",
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false,
+        "supportsUsageInStreaming": false,
+        "maxTokensField": "max_tokens"
+      },
+      "models": [
+        {
+          "id": "Qwen/Qwen3.6-27B",
+          "name": "Qwen3.6 27B"
+        },
+        {
+          "id": "qwen3:32b",
+          "name": "Qwen3 32B"
+        },
+        {
+          "id": "gpt-oss:120b",
+          "name": "GPT-OSS 120B"
+        },
+        {
+          "id": "gpt-oss:20b",
+          "name": "GPT-OSS 20B"
+        },
+        {
+          "id": "gemma3:27b",
+          "name": "Gemma 3 27B"
+        },
+        {
+          "id": "llama4:16x17b",
+          "name": "Llama 4 16x17B"
+        },
+        {
+          "id": "deepseek-r1:70b",
+          "name": "DeepSeek R1 70B"
+        },
+        {
+          "id": "deepseek-r1:32b",
+          "name": "DeepSeek R1 32B"
+        }
+      ]
+    },
+    "lumen": {
+      "baseUrl": "https://lumen.computes.illinois.edu/v1",
+      "api": "openai-completions",
+      "apiKey": "!cat ~/.config/opencode/lumen_key",
+      "models": [
+        {
+          "id": "qwen3-coder-next",
+          "name": "Qwen3 Coder Next",
+          "reasoning": false,
+          "contextWindow": 131066,
+          "maxTokens": 65536
+        },
+        {
+          "id": "qwen3.6-35b-a3b",
+          "name": "Qwen3.6 35B A3B",
+          "reasoning": true,
+          "contextWindow": 262138,
+          "maxTokens": 65536
+        },
+        {
+          "id": "qwen3.8-flash",
+          "name": "Qwen3.8 Flash",
+          "reasoning": true,
+          "contextWindow": 262138,
+          "maxTokens": 65536
+        },
+        {
+          "id": "nemotron-3-super-120b-a12b",
+          "name": "Nemotron 3 Super 120B",
+          "reasoning": true,
+          "contextWindow": 262144,
+          "maxTokens": 65536
+        },
+        {
+          "id": "gemma-4-31b-it",
+          "name": "Gemma 4 31B",
+          "reasoning": true,
+          "contextWindow": 136737,
+          "maxTokens": 32768
+        },
+        {
+          "id": "ornith-1.0-35b",
+          "name": "Ornith 1.0 35B",
+          "reasoning": true,
+          "contextWindow": 262138,
+          "maxTokens": 65536
+        },
+        {
+          "id": "deepseek",
+          "name": "DeepSeek (alias)",
+          "reasoning": true,
+          "contextWindow": 1048570,
+          "maxTokens": 65536
+        },
+        {
+          "id": "deepseek-v4.1",
+          "name": "DeepSeek V4.1",
+          "reasoning": true,
+          "contextWindow": 1048570,
+          "maxTokens": 65536
+        },
+        {
+          "id": "deepseek-v4.1-flash",
+          "name": "DeepSeek V4.1 Flash",
+          "reasoning": true,
+          "contextWindow": 1048570,
+          "maxTokens": 65536
+        },
+        {
+          "id": "deepseek-v4.1-flash-1017",
+          "name": "DeepSeek V4.1 Flash 1017",
+          "reasoning": true,
+          "contextWindow": 1048570,
+          "maxTokens": 65536
+        },
+        {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "reasoning": true,
+          "contextWindow": 1048570,
+          "maxTokens": 65536
+        }
+      ],
+      "compat": {
+        "supportsDeveloperRole": false
+      }
+    }
+  }
+}
