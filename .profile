@@ -19,6 +19,10 @@ export ALTERNATE_EDITOR=""
 # dont prompt to restart services constantly
 export DEBIAN_FRONTEND=noninteractive
 
+# pi agent dumb boilerplate
+export PI_CODING_AGENT_DIR="$HOME/.config/pi"
+export PI_CODING_AGENT_SESSION_DIR="$HOME/.local/pi/sessions"
+
 # -------- PATH --------
 # add bin and subdirectories to path if it exists
 if [ -d "$HOME/bin" ]
